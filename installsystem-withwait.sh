@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 parted /dev/sda -- mklabel gpt
 parted /dev/sda -- mkpart root btrfs 512MB -8GB
 parted /dev/sda -- mkpart swap linux-swap -8GB 100%
