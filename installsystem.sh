@@ -18,15 +18,21 @@ btrfs subvolume create /mnt/persist
 btrfs subvolume create /mnt/log
 btrfs subvolume snapshot -r /mnt/root /mnt/root-blank
 umount /mnt
+echo "Mounting root..."
 mount -o subvol=root,compress=zstd,discard,noatime /dev/mapper/crypt /mnt 
 mkdir /mnt/home
+echo "Mounting home..."
 mount -o subvol=home,compress=zstd,discard,noatime /dev/mapper/crypt /mnt/home
 mkdir /mnt/nix
+echo "Mounting nix..."
 mount -o subvol=nix,compress=zstd,discard,noatime /dev/mapper/crypt /mnt/nix
 mkdir /mnt/persist
+echo "Mounting persist..."
 mount -o subvol=persist,compress=zstd,discard,noatime /dev/mapper/crypt /mnt/persist
 mkdir -p /mnt/var/log
+echo "Mounting log..."
 mount -o subvol=log,compress=zstd,discard,noatime /dev/mapper/crypt /mnt/var/log
 mkdir /mnt/boot
+echo "Mounting boot..."
 mount -L boot /dev/sda3 /mnt/boot
 nixos-generate-config --root /mnt
