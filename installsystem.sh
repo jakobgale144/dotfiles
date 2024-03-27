@@ -1,10 +1,10 @@
 #! /bin/sh
 sudo -i
-parted /dev/vda -- mklabel gpt
-parted /dev/vda -- mkpart root btrfs 512MB -8GB
-parted /dev/vda -- mkpart swap linux-swap -8GB 100%
-parted /dev/vda -- mkpart boot fat32 1MB 512MB
-parted /dev/vda -- set 3 esp on
+parted /dev/sda -- mklabel gpt
+parted /dev/sda -- mkpart root btrfs 512MB -8GB
+parted /dev/sda -- mkpart swap linux-swap -8GB 100%
+parted /dev/sda -- mkpart boot fat32 1MB 512MB
+parted /dev/sda -- set 3 esp on
 mkfs.fat -F 32 -n boot /dev/sda3
 mkswap -L swap /dev/sda2
 swapon /dev/sda2
