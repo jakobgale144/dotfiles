@@ -9,7 +9,7 @@ mkswap -L swap /dev/sda2
 swapon /dev/sda2
 cryptsetup --verify-passphrase -v luksFormat /dev/sda1
 cryptsetup open /dev/sda1 crypt
-mkfs.btrfs -L root 
+mkfs.btrfs -L root /dev/mapper/crypt
 mount -t btrfs /dev/mapper/crypt /mnt
 btrfs subvolume create /mnt/root
 btrfs subvolume create /mnt/home
