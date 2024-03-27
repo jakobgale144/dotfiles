@@ -1,8 +1,8 @@
-parted /dev/sda -- mklabel
+parted /dev/sda -- mklabel gpt
 parted /dev/sda -- mkpart root btrfs 512MB -8GB
 parted /dev/sda -- mkpart swap linux-swap -8GB 100%
 parted /dev/sda -- mkpart boot fat32 1MB 512MB
-parted /dev/sda -- set 3 esp
+parted /dev/sda -- set 3 esp on
 mkfs.fat -F 32 -n boot /dev/sda3
 sleep 5s
 mkswap -L swap /dev/sda2
@@ -26,15 +26,15 @@ btrfs subvolume snapshot -r /mnt/root /mnt/root-blank
 sleep 5s
 umount /mnt
 sleep 5s
-mount -o subvol=root,compress=zstd,autodefrag,discard,noatime /dev/mapper/crypt /mnt 
+mount -o subvol=root,compress=zstd,discard,noatime /dev/mapper/crypt /mnt 
 mkdir /mnt/home
-mount -o subvol=home,compress=zstd,autodefrag,discard,noatime /dev/mapper/crypt /mnt/home
+mount -o subvol=home,compress=zstd,discard,noatime /dev/mapper/crypt /mnt/home
 mkdir /mnt/nix
-mount -o subvol=nix,compress=zstd,autodefrag,discard,noatime /dev/mapper/crypt /mnt/nix
+mount -o subvol=nix,compress=zstd,discard,noatime /dev/mapper/crypt /mnt/nix
 mkdir /mnt/persist
-mount -o subvol=persist,compress=zstd,autodefrag,discard,noatime /dev/mapper/crypt /mnt/persist
+mount -o subvol=persist,compress=zstd,discard,noatime /dev/mapper/crypt /mnt/persist
 mkdir -p /mnt/var/log
-mount -o subvol=log,compress=zstd,autodefrag,discard,noatime /dev/mapper/crypt /mnt/var/log
+mount -o subvol=log,compress=zstd,discard,noatime /dev/mapper/crypt /mnt/var/log
 mkdir /mnt/boot
 sleep 5s
 mount -L boot /dev/sda3 /mnt/boot
