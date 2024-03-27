@@ -29,3 +29,4 @@ mkdir -p /mnt/var/log
 mount -o subvol=log,compress=zstd,discard,noatime /dev/mapper/crypt /mnt/var/log
 mkdir /mnt/boot
 mount -L boot /dev/sda3 /mnt/boot
+nixos-generate-config --root /mnt
