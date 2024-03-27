@@ -15,7 +15,7 @@ btrfs subvolume create /mnt/root
 btrfs subvolume create /mnt/home
 btrfs subvolume create /mnt/nix
 btrfs subvolume create /mnt/persist
-btrfs subvolume create /mnt/var/log
+btrfs subvolume create /mnt/log
 btrfs subvolume snapshot -r /mnt/root /mnt/root-blank
 umount /mnt
 mount -o subvol=root,compress=zstd,discard,noatime /dev/mapper/crypt /mnt 
