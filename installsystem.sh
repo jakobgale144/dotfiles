@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 # This script assumes: 
 # -  Your privileges are already elevated (sudo -i)
