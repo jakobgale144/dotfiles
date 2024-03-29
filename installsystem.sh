@@ -6,19 +6,19 @@
 
 # Partitioning the drive
 echo "Making GPT labelspace on /dev/sda..."
-parted /dev/sda -- mklabel gpt > /dev/null
+parted /dev/sda -- mklabel gpt 1>>/dev/null 2>>/dev/null
 echo "Making /dev/sda1 (root: btrfs)..."
-parted /dev/sda -- mkpart root btrfs 512MB -8GB > /dev/null
+parted /dev/sda -- mkpart root btrfs 512MB -8GB 1>>/dev/null 2>>/dev/null
 echo "Making /dev/sda2 (swap: linux-swap)..."
-parted /dev/sda -- mkpart swap linux-swap -8GB 100% > /dev/null
+parted /dev/sda -- mkpart swap linux-swap -8GB 100% 1>>/dev/null 2>>/dev/null
 echo "Making /dev/sda3 (boot: fat32)..."
-parted /dev/sda -- mkpart boot fat32 1MB 512MB > /dev/null
+parted /dev/sda -- mkpart boot fat32 1MB 512MB 1>>/dev/null 2>>/dev/null
 echo "Setting /dev/sda3 to EFI System Partition..."
-parted /dev/sda -- set 3 esp on > /dev/null
+parted /dev/sda -- set 3 esp on 1>>/dev/null 2>>/dev/null
 
 # Making boot and swap filesystems
 echo "Making Fat32 filesystem on /dev/sda3..."
-mkfs.fat -F 32 -n boot /dev/sda3 > /dev/null
+mkfs.fat -q -F 32 -n boot /dev/sda3
 echo "Making SWAP filesystem on /dev/sda2..."
 mkswap -L swap /dev/sda2 > /dev/null
 echo "Turning swap on..."
@@ -30,7 +30,7 @@ cryptsetup --verify-passphrase -v luksFormat /dev/sda1
 echo "Opening /dev/sda1 into /dev/mapper/crypt..."
 cryptsetup open /dev/sda1 crypt
 echo "Making BTRFS filesystem on /dev/mapper/crypt..."
-mkfs.btrfs -L root /dev/mapper/crypt > /dev/null
+mkfs.btrfs -q -L root /dev/mapper/crypt
 echo "Mounting /dev/mapper/crypt..."
 mount -t btrfs /dev/mapper/crypt /mnt
 echo "Creating BTRFS subvolumes..."
@@ -66,7 +66,7 @@ echo "Mounting boot..."
 mount /dev/sda3 /mnt/boot
 
 # Generating NixOS config files & copying custom hardware config
-echo "Generating NixOS configuration files..."
+# echo "Generating NixOS configuration files..."
 nixos-generate-config --root /mnt
 echo "Copying original hardware config..."
 mv /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/BACKUP-hardware-configuration.nix
