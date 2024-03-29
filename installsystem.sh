@@ -5,7 +5,8 @@
 # -  This script (and it's associated file, hardware-configuration.nix) lives in /home/root/dotfiles, or just ~/dotfiles
 
 # Partitioning the drive
-echo "Making GPT labelspace on /dev/sda..."
+echo "
+Making GPT labelspace on /dev/sda..."
 parted /dev/sda -- mklabel gpt 1>>/dev/null 2>>/dev/null
 echo "Making /dev/sda1 (root: btrfs)..."
 parted /dev/sda -- mkpart root btrfs 512MB -8GB 1>>/dev/null 2>>/dev/null
@@ -17,7 +18,8 @@ echo "Setting /dev/sda3 to EFI System Partition..."
 parted /dev/sda -- set 3 esp on 1>>/dev/null 2>>/dev/null
 
 # Making boot and swap filesystems
-echo "Making Fat32 filesystem on /dev/sda3..."
+echo "
+Making FAT32 filesystem on /dev/sda3..."
 mkfs.fat -F 32 -n boot /dev/sda3 1>>/dev/null 2>>/dev/null
 echo "Making SWAP filesystem on /dev/sda2..."
 mkswap -L swap /dev/sda2 1>>/dev/null 2>>/dev/null
@@ -25,7 +27,8 @@ echo "Turning swap on..."
 swapon /dev/sda2 > /dev/null
 
 # Formatting the main partition with LUKS encryption, making BTRFS filesystem, & creating BTRFS subvolumes
-echo "Formatting /dev/sda1 for LUKS encryption..."
+echo "
+Formatting /dev/sda1 for LUKS encryption..."
 cryptsetup --verify-passphrase -v luksFormat /dev/sda1
 echo "Opening /dev/sda1 into /dev/mapper/crypt..."
 cryptsetup open /dev/sda1 crypt
@@ -45,7 +48,8 @@ echo "Unmounting base subvolume..."
 umount /mnt
 
 # Remounting as a collection of BTRFS subvolumes
-echo "Mounting root subvolume..."
+echo "
+Mounting root subvolume..."
 mount -o subvol=root,compress=zstd,discard,noatime /dev/mapper/crypt /mnt 
 mkdir /mnt/home
 echo "Mounting home subvolume..."
@@ -62,15 +66,18 @@ mount -o subvol=log,compress=zstd,discard,noatime /dev/mapper/crypt /mnt/var/log
 mkdir /mnt/boot
 
 # Mounting boot
-echo "Mounting boot..."
+echo "
+Mounting boot..."
 mount /dev/sda3 /mnt/boot
 
 # Generating NixOS config files & copying custom hardware config
-# echo "Generating NixOS configuration files..."
-nixos-generate-config --root /mnt
+echo "
+Generating NixOS configuration files..."
+nixos-generate-config --root /mnt 1>>/dev/null 2>>/dev/null
 echo "Copying original hardware config..."
 mv /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/BACKUP-hardware-configuration.nix
 echo "Moving custom hardware configuration into place..."
 cp ~/dotfiles/hardware-configuration.nix /mnt/etc/nixos
 
-echo "Edit your configuration files now, and then nixos-install when you are ready."
+echo "
+Edit your configuration files now, and then nixos-install when you are ready."
