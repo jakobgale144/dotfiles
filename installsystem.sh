@@ -30,19 +30,23 @@ swapon /dev/sda2 > /dev/null
 echo "
 Formatting /dev/sda1 for LUKS encryption..."
 cryptsetup --verify-passphrase -v luksFormat /dev/sda1
-echo "Opening /dev/sda1 into /dev/mapper/crypt..."
+cryptsetup config /dev/sda1 --label luksroot
+echo "
+Opening /dev/sda1 into /dev/mapper/crypt..."
 cryptsetup open /dev/sda1 crypt
 echo "Making BTRFS filesystem on /dev/mapper/crypt..."
 mkfs.btrfs -L root /dev/mapper/crypt 1>>/dev/null 2>>/dev/null
 echo "Mounting /dev/mapper/crypt..."
 mount -t btrfs /dev/mapper/crypt /mnt
-echo "Creating BTRFS subvolumes..."
+echo "
+Creating BTRFS subvolumes..."
 btrfs subvolume create /mnt/root
 btrfs subvolume create /mnt/home
 btrfs subvolume create /mnt/nix
 btrfs subvolume create /mnt/persist
 btrfs subvolume create /mnt/log
-echo "Creating readonly snapshot of empty root (erase your darlings)..."
+echo "
+Creating readonly snapshot of empty root (erase your darlings)..."
 btrfs subvolume snapshot -r /mnt/root /mnt/root-blank 1>>/dev/null 2>>/dev/null
 echo "Unmounting base subvolume..."
 umount /mnt
@@ -80,4 +84,7 @@ echo "Moving custom hardware configuration into place..."
 cp ~/dotfiles/hardware-configuration.nix /mnt/etc/nixos
 
 echo "
+Your default hardware configuration now lives in /mnt/etc/nixos as 'BACKUP-hardware-configuration.nix'.
+Compare the two files and see if you need any special parameters included in the custom file.
+
 Edit your configuration files now, and then nixos-install when you are ready."
