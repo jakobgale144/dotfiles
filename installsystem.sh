@@ -5,7 +5,9 @@ set -e
 # -  Your privileges are already elevated (sudo -i)
 # -  This script (and it's associated file, hardware-configuration.nix) lives in /home/root/dotfiles, or just ~/dotfiles
 
-DRIVE=sda
+read -p "
+Enter the name of the drive NixOS should be installed on (should not be a filepath)
+Drive name (example: 'sda'): "
 
 # Partitioning the drive
 echo "
