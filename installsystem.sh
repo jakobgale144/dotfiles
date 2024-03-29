@@ -4,36 +4,38 @@
 # -  Your privileges are already elevated (sudo -i)
 # -  This script (and it's associated file, hardware-configuration.nix) lives in /home/root/dotfiles, or just ~/dotfiles
 
+DRIVE=sda
+
 # Partitioning the drive
 echo "
-Making GPT labelspace on /dev/sda..."
-parted /dev/sda -- mklabel gpt 1>>/dev/null 2>>/dev/null
-echo "Making /dev/sda1 (root: btrfs)..."
-parted /dev/sda -- mkpart root btrfs 512MB -8GB 1>>/dev/null 2>>/dev/null
-echo "Making /dev/sda2 (swap: linux-swap)..."
-parted /dev/sda -- mkpart swap linux-swap -8GB 100% 1>>/dev/null 2>>/dev/null
-echo "Making /dev/sda3 (boot: fat32)..."
-parted /dev/sda -- mkpart boot fat32 1MB 512MB 1>>/dev/null 2>>/dev/null
-echo "Setting /dev/sda3 to EFI System Partition..."
-parted /dev/sda -- set 3 esp on 1>>/dev/null 2>>/dev/null
+Making GPT labelspace on /dev/${DRIVE}..."
+parted /dev/$DRIVE -- mklabel gpt 1>>/dev/null 2>>/dev/null
+echo "Making /dev/${DRIVE}1 (root: btrfs)..."
+parted /dev/$DRIVE -- mkpart root btrfs 512MB -8GB 1>>/dev/null 2>>/dev/null
+echo "Making /dev/${DRIVE}2 (swap: linux-swap)..."
+parted /dev/$DRIVE -- mkpart swap linux-swap -8GB 100% 1>>/dev/null 2>>/dev/null
+echo "Making /dev/${DRIVE}3 (boot: fat32)..."
+parted /dev/$DRIVE -- mkpart boot fat32 1MB 512MB 1>>/dev/null 2>>/dev/null
+echo "Setting /dev/${DRIVE}3 to EFI System Partition..."
+parted /dev/$DRIVE -- set 3 esp on 1>>/dev/null 2>>/dev/null
 
 # Making boot and swap filesystems
 echo "
-Making FAT32 filesystem on /dev/sda3..."
-mkfs.fat -F 32 -n boot /dev/sda3 1>>/dev/null 2>>/dev/null
-echo "Making SWAP filesystem on /dev/sda2..."
-mkswap -L swap /dev/sda2 1>>/dev/null 2>>/dev/null
+Making FAT32 filesystem on /dev/${DRIVE}3..."
+mkfs.fat -F 32 -n boot /dev/${DRIVE}3 1>>/dev/null 2>>/dev/null
+echo "Making SWAP filesystem on /dev/${DRIVE}2..."
+mkswap -L swap /dev/${DRIVE}2 1>>/dev/null 2>>/dev/null
 echo "Turning swap on..."
-swapon /dev/sda2 > /dev/null
+swapon /dev/${DRIVE}2 > /dev/null
 
 # Formatting the main partition with LUKS encryption, making BTRFS filesystem, & creating BTRFS subvolumes
 echo "
-Formatting /dev/sda1 for LUKS encryption..."
-cryptsetup --verify-passphrase -v luksFormat /dev/sda1
-cryptsetup config /dev/sda1 --label luksroot
+Formatting /dev/${DRIVE}1 for LUKS encryption..."
+cryptsetup --verify-passphrase -v luksFormat /dev/${DRIVE}1
+cryptsetup config /dev/${DRIVE}1 --label luksroot
 echo "
-Opening /dev/sda1 into /dev/mapper/crypt..."
-cryptsetup open /dev/sda1 crypt
+Opening /dev/${DRIVE}1 into /dev/mapper/crypt..."
+cryptsetup open /dev/${DRIVE}1 crypt
 echo "Making BTRFS filesystem on /dev/mapper/crypt..."
 mkfs.btrfs -L root /dev/mapper/crypt 1>>/dev/null 2>>/dev/null
 echo "Mounting /dev/mapper/crypt..."
@@ -72,7 +74,7 @@ mkdir /mnt/boot
 # Mounting boot
 echo "
 Mounting boot..."
-mount /dev/sda3 /mnt/boot
+mount /dev/${DRIVE}3 /mnt/boot
 
 # Generating NixOS config files & copying custom hardware config
 echo "
