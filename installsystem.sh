@@ -7,7 +7,7 @@ set -e
 
 read -p "
 Enter the name of the drive NixOS should be installed on (should not be a filepath)
-Drive name (example: 'sda'): "
+Drive name (example: 'sda'): " DRIVE
 
 # Partitioning the drive
 echo "
