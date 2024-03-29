@@ -36,3 +36,4 @@ mkdir /mnt/boot
 echo "Mounting boot..."
 mount /dev/vda3 /mnt/boot
 nixos-generate-config --root /mnt
+cp ~/dotfiles/hardware-configuration.nix /mnt/etc/nixos/hardware-configuration.nix
