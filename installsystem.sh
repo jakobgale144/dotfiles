@@ -36,7 +36,8 @@ cryptsetup config /dev/${DRIVE}1 --label luksroot
 echo "
 Opening /dev/${DRIVE}1 into /dev/mapper/crypt..."
 cryptsetup open /dev/${DRIVE}1 crypt
-echo "Making BTRFS filesystem on /dev/mapper/crypt..."
+echo "
+Making BTRFS filesystem on /dev/mapper/crypt..."
 mkfs.btrfs -L root /dev/mapper/crypt 1>>/dev/null 2>>/dev/null
 echo "Mounting /dev/mapper/crypt..."
 mount -t btrfs /dev/mapper/crypt /mnt
