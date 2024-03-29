@@ -28,8 +28,8 @@
     supportedFilesystems = [ "btrfs" ];
   };
 
-  boot.initrd.luks.devices."crypt" = {
-    device = "/dev/disk/by-partlabel/root";
+  boot.initrd.luks.devices.luksroot = {
+    device = "/dev/disk/by-label/luksroot";
     preLVM = true;
     allowDiscards = true;
   };
