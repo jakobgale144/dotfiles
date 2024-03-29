@@ -18,9 +18,9 @@ parted /dev/sda -- set 3 esp on 1>>/dev/null 2>>/dev/null
 
 # Making boot and swap filesystems
 echo "Making Fat32 filesystem on /dev/sda3..."
-mkfs.fat -q -F 32 -n boot /dev/sda3
+mkfs.fat -F 32 -n boot /dev/sda3 1>>/dev/null 2>>/dev/null
 echo "Making SWAP filesystem on /dev/sda2..."
-mkswap -L swap /dev/sda2 > /dev/null
+mkswap -L swap /dev/sda2 1>>/dev/null 2>>/dev/null
 echo "Turning swap on..."
 swapon /dev/sda2 > /dev/null
 
@@ -30,7 +30,7 @@ cryptsetup --verify-passphrase -v luksFormat /dev/sda1
 echo "Opening /dev/sda1 into /dev/mapper/crypt..."
 cryptsetup open /dev/sda1 crypt
 echo "Making BTRFS filesystem on /dev/mapper/crypt..."
-mkfs.btrfs -q -L root /dev/mapper/crypt
+mkfs.btrfs -L root /dev/mapper/crypt 1>>/dev/null 2>>/dev/null
 echo "Mounting /dev/mapper/crypt..."
 mount -t btrfs /dev/mapper/crypt /mnt
 echo "Creating BTRFS subvolumes..."
@@ -40,7 +40,7 @@ btrfs subvolume create /mnt/nix
 btrfs subvolume create /mnt/persist
 btrfs subvolume create /mnt/log
 echo "Creating readonly snapshot of empty root (erase your darlings)..."
-btrfs subvolume snapshot -r /mnt/root /mnt/root-blank > /dev/null
+btrfs subvolume snapshot -r /mnt/root /mnt/root-blank 1>>/dev/null 2>>/dev/null
 echo "Unmounting base subvolume..."
 umount /mnt
 
