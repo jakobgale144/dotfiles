@@ -73,7 +73,7 @@ mount -o subvol=persist,compress=zstd,discard,noatime /dev/mapper/crypt /mnt/per
 mkdir -p /mnt/var/log
 echo "Mounting log subvolume..."
 mount -o subvol=log,compress=zstd,discard,noatime /dev/mapper/crypt /mnt/var/log
-mkdir -R /mnt/boot/efi
+mkdir -p /mnt/boot/efi
 
 # Mounting boot
 echo "
