@@ -73,12 +73,12 @@ mount -o subvol=persist,compress=zstd,discard,noatime /dev/mapper/crypt /mnt/per
 mkdir -p /mnt/var/log
 echo "Mounting log subvolume..."
 mount -o subvol=log,compress=zstd,discard,noatime /dev/mapper/crypt /mnt/var/log
-mkdir -p /mnt/boot/efi
+mkdir /mnt/boot
 
 # Mounting boot
 echo "
 Mounting boot..."
-mount /dev/${DRIVE}3 /mnt/boot/efi
+mount /dev/${DRIVE}3 /mnt/boot
 
 # Generating NixOS config files & copying custom hardware config
 echo "
