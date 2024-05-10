@@ -22,12 +22,18 @@
         btrfs subvolume delete /mnt/root
         btrfs subvolume snapshot /mnt/root-blank /mnt/root
       '';
+      preLVMCommands = ''
+        echo '--- OWNERSHIP NOTICE ---'
+        echo 'This device is property of Jakob Gale'
+        echo 'If lost please contact jakobgale144@gmail.com'
+        echo '--- OWNERSHIP NOTICE ---'
+      '';
     };
     kernelModules = [ ];
     extraModulePackages = [ ];
     supportedFilesystems = [ "btrfs" ];
   };
-
+  
   boot.initrd.luks.devices.luksroot = {
     device = "/dev/disk/by-label/luksroot";
     preLVM = true;
