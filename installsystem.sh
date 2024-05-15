@@ -84,13 +84,10 @@ mount /dev/${DRIVE}3 /mnt/boot
 echo "
 Generating NixOS configuration files..."
 nixos-generate-config --root /mnt 1>>/dev/null 2>>/dev/null
-echo "Copying original hardware config..."
-mv /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/BACKUP-hardware-configuration.nix
-echo "Moving custom hardware configuration into place..."
-cp ~/dotfiles/hardware-configuration.nix /mnt/etc/nixos
+echo "Moving custom BTRFS configuration into place..."
+cp ~/dotfiles/btrfs-configuration.nix /mnt/etc/nixos
+echo "Appending the BTRFS configuration to the imports of configuration.nix..."
+sed -i '/hardware-configuration.nix/a \ \ \ \ \ \ ./btrfs-configuration.nix' /mnt/etc/nixos/configuration.nix
 
 echo "
-Your default hardware configuration now lives in /mnt/etc/nixos as 'BACKUP-hardware-configuration.nix'.
-Compare the two files and see if you need any special parameters included in the custom file.
-
 Edit your configuration files now, and then nixos-install when you are ready."
