@@ -85,7 +85,7 @@ echo "
 Generating NixOS configuration files..."
 nixos-generate-config --root /mnt 1>>/dev/null 2>>/dev/null
 echo "Moving custom BTRFS configuration into place..."
-cp ~/dotfiles/btrfs-configuration.nix /mnt/etc/nixos
+cp /home/nixos/dotfiles/btrfs-configuration.nix /mnt/etc/nixos
 echo "Appending the BTRFS configuration to the imports of configuration.nix..."
 sed -i '/hardware-configuration.nix/a \ \ \ \ \ \ ./btrfs-configuration.nix' /mnt/etc/nixos/configuration.nix
 
