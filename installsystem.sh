@@ -9,18 +9,25 @@ read -p "
 Enter the name of the drive NixOS should be installed on (should not be a filepath)
 Drive name (example: 'sda'): " DRIVE
 
+if [[ $DRIVE == 'nvme'* ]]; 
+  then PART='n';
+  else PART='';
+fi
+
 # Partitioning the drive
 echo "
 Making GPT labelspace on /dev/${DRIVE}..."
 parted /dev/$DRIVE -- mklabel gpt 1>>/dev/null 2>>/dev/null
-echo "Making /dev/${DRIVE}1 (root: btrfs)..."
+echo "Making /dev/${DRIVE}${PART}1 (root: btrfs)..."
 parted /dev/$DRIVE -- mkpart root btrfs 512MB -8GB 1>>/dev/null 2>>/dev/null
-echo "Making /dev/${DRIVE}2 (swap: linux-swap)..."
+echo "Making /dev/${DRIVE}${PART}2 (swap: linux-swap)..."
 parted /dev/$DRIVE -- mkpart swap linux-swap -8GB 100% 1>>/dev/null 2>>/dev/null
-echo "Making /dev/${DRIVE}3 (boot: fat32)..."
+echo "Making /dev/${DRIVE}${PART}3 (boot: fat32)..."
 parted /dev/$DRIVE -- mkpart boot fat32 1MB 512MB 1>>/dev/null 2>>/dev/null
-echo "Setting /dev/${DRIVE}3 to EFI System Partition..."
+echo "Setting /dev/${DRIVE}${PART}3 to EFI System Partition..."
 parted /dev/$DRIVE -- set 3 esp on 1>>/dev/null 2>>/dev/null
+
+DRIVE+=$PART
 
 # Making boot and swap filesystems
 echo "
