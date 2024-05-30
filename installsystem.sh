@@ -3,21 +3,21 @@ set -e
 
 # This script assumes: 
 # -  Your privileges are already elevated (sudo su)
-# -  This script (and it's associated file, btrfs-configuration.nix) lives in ~/dotfiles
+# -  This script (and its associated file, btrfs-configuration.nix) lives in '~/dotfiles' ('/home/root/dotfiles')
 
 read -p "
 Enter the name of the drive NixOS should be installed on (should not be a filepath)
 Drive name (example: 'sda'): " DRIVE
 
 if [[ $DRIVE == 'nvme'* ]]; 
-  then PART='n';
+  then PART='p';
   else PART='';
 fi
 
 # Partitioning the drive
 echo "
 Making GPT labelspace on /dev/${DRIVE}..."
-parted /dev/$DRIVE -- mklabel gpt 1>>/dev/null 2>>/dev/null
+parted /dev/$DRIVE -- mklabel gpt
 echo "Making /dev/${DRIVE}${PART}1 (root: btrfs)..."
 parted /dev/$DRIVE -- mkpart root btrfs 512MB -8GB 1>>/dev/null 2>>/dev/null
 echo "Making /dev/${DRIVE}${PART}2 (swap: linux-swap)..."
