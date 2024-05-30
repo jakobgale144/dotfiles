@@ -2,7 +2,7 @@
 set -e
 
 # This script assumes: 
-# -  Your privileges are already elevated (sudo -i)
+# -  Your privileges are already elevated (sudo su)
 # -  This script (and it's associated file, btrfs-configuration.nix) lives in ~/dotfiles
 
 read -p "
