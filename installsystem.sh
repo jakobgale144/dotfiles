@@ -3,7 +3,7 @@ set -e
 
 # This script assumes: 
 # -  Your privileges are already elevated (sudo su)
-# -  This script (and its associated file, btrfs-configuration.nix) lives in '~/dotfiles' ('/home/root/dotfiles')
+# -  This script (and its associated file, btrfs-configuration.nix) lives in '~/dotfiles' ('/home/nixos/dotfiles')
 
 read -p "
 Enter the name of the drive NixOS should be installed on (should not be a filepath)
@@ -53,7 +53,7 @@ echo "Mounting /dev/mapper/crypt..."
 mount -t btrfs /dev/mapper/crypt /mnt
 echo "
 Creating BTRFS subvolumes..."
-btrfs subvolume create /mnt/root
+btrfs subvolume create /mnt/rootr
 btrfs subvolume create /mnt/home
 btrfs subvolume create /mnt/nix
 btrfs subvolume create /mnt/persist
@@ -92,7 +92,7 @@ echo "
 Generating NixOS configuration files..."
 nixos-generate-config --root /mnt 1>>/dev/null 2>>/dev/null
 echo "Moving custom BTRFS configuration into place..."
-cp /home/root/dotfiles/btrfs-configuration.nix /mnt/etc/nixos
+cp ~/dotfiles/btrfs-configuration.nix /mnt/etc/nixos
 echo "Appending the BTRFS configuration to the imports of configuration.nix..."
 sed -i '/hardware-configuration.nix/a \ \ \ \ \ \ ./btrfs-configuration.nix' /mnt/etc/nixos/configuration.nix
 
