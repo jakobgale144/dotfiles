@@ -3,27 +3,27 @@
 {
   imports = [ ];
 
-  boot = {
-    initrd = {
-      postDeviceCommands = lib.mkAfter ''
-        mkdir /mnt
-        mount -t btrfs /dev/mapper/crypt
-        btrfs subvolume delete /mnt/root
-        btrfs subvolume snapshot /mnt/root-blank /mnt/root
-      '';
-      preLVMCommands = ''
-        echo '--- OWNERSHIP NOTICE ---'
-        echo 'This device is property of Jakob Gale'
-        echo 'If lost please contact jakobgale144@gmail.com'
-        echo '--- OWNERSHIP NOTICE ---'
-      '';
-    };
+  boot.initrd = {
+    postDeviceCommands = lib.mkAfter ''
+      mkdir /mnt
+      mount -t btrfs /dev/mapper/crypt
+      btrfs subvolume delete /mnt/root
+      btrfs subvolume snapshot /mnt/root-blank /mnt/root
+    '';
+
+    preLVMCommands = ''
+      echo '--- OWNERSHIP NOTICE ---'
+      echo 'This device is property of Jakob Gale'
+      echo 'If lost please contact jakobgale144@gmail.com'
+      echo '--- OWNERSHIP NOTICE ---' 
+    '';
+
     supportedFilesystems = [ "btrfs" ];
-  };
-  
-  boot.initrd.luks.devices."crypt" =
-  { preLVM = true;
-    allowDiscards = true;
+
+    luks.devices."crypt" =
+      { preLVM = true;
+        allowDiscards = true;
+      };
   };
 
   fileSystems."/" =
