@@ -18,7 +18,7 @@
     nixosConfigurations.test-laptop = nixpkkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {inherit inputs;};
-      modules = [./nixos/configuration.nix];
+      modules = [./configuration.nix];
     };
   };
 }
