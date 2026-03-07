@@ -71,7 +71,6 @@
     fsType = "tmpfs";
     options = [
       "relatime"       # Write access time relative to it's creation/modification time
-      "space_cache=v2" # Use a new and faster btrfs space cache
       "ssd"            # Specify this mount is on an SSD
       "mode=755"       # systemd defaults to 777, which sometimes causes problems
     ];
@@ -86,7 +85,7 @@
       "compress-force=zstd:1" # Force level 1 ZSTD compression on all files; quickest, most bang-for-buck
       "relatime"
       "discard=async"         # Asynchronus discard; free up deleted blocks in chunks
-      "space_cache=v2"
+      "space_cache=v2"        # Use a new and faster btrfs space cache
       "ssd"
     ];
   };
