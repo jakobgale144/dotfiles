@@ -15,7 +15,7 @@
     nixpkgs-unstable,
   }: let
   in {
-    nixosConfigurations.test-laptop = nixpkkgs.lib.nixosSystem {
+    nixosConfigurations.test-laptop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {inherit inputs;};
       modules = [./configuration.nix];
