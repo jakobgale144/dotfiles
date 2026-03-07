@@ -13,7 +13,7 @@
   ];
 
   # Set bootloader options (specific to hardware)
-  boot.loader {
+  boot.loader = {
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot";
     systemd-boot.enable = true; # todo: work with grub or other bootloader
@@ -42,7 +42,7 @@
     "ext4"
     "btrfs"
     "xfs"
-    "zfs"
+    # "zfs"
     "ntfs"
     "fat"
     "vfat"
@@ -61,7 +61,7 @@
   # We can access all of BTRFS' subvolumes from /pool
   fileSystems."/pool" = {
     device = "/dev/mapper/crypt";
-    fstype = "btrfs";
+    fsType = "btrfs";
     options = [ "subvolid=5" ]; # The ID used for the BTRFS subvolume pool
   };
 
@@ -203,6 +203,6 @@
   networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqCovernor = lib.mkDefault "powersave";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
