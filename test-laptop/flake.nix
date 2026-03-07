@@ -1,5 +1,5 @@
 {
-  description = "Test Nix Flake config"
+  description = "Test Nix Flake config";
 
   inputs = {
     # Nixpkgs
