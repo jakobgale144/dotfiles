@@ -34,7 +34,7 @@
   time.timeZone = "America/New_York";
 
   users.users.test = {
-    initalPassword = " ";
+    initialPassword = " ";
     isNormalUser = true;
     extraGroups = ["wheel"];
     packages = with pkgs; [ # todo: fix? how would I install packages
@@ -46,7 +46,7 @@
 
   # programs.firefox.enable = true;
 
-  system.copySystemConfiguration = true;
+  # system.copySystemConfiguration = true; # Not supported with Flakes
 
   system.stateVersion = "25.11"; # Do you know what you're doing?
 }
