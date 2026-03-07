@@ -70,9 +70,8 @@
     device = "tmpfs"; # Erase your darlings!
     fsType = "tmpfs";
     options = [
-      "relatime"       # Write access time relative to it's creation/modification time
-      "ssd"            # Specify this mount is on an SSD
-      "mode=755"       # systemd defaults to 777, which sometimes causes problems
+      "relatime"
+      "mode=755" # systemd defaults to 777, which sometimes causes problems
     ];
   };
 
@@ -83,10 +82,10 @@
     options = [ 
       "subvol=@nix"
       "compress-force=zstd:1" # Force level 1 ZSTD compression on all files; quickest, most bang-for-buck
-      "relatime"
+      "relatime"              # Write access time relative to it's creation/modification time
       "discard=async"         # Asynchronus discard; free up deleted blocks in chunks
       "space_cache=v2"        # Use a new and faster btrfs space cache
-      "ssd"
+      "ssd"                   # Specify this mount is on an SSD
     ];
   };
 
