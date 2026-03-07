@@ -44,6 +44,8 @@
     ];
   };
 
+  programs.niri.enable = true;
+
   # programs.firefox.enable = true;
 
   # system.copySystemConfiguration = true; # Not supported with Flakes
