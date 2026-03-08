@@ -40,6 +40,7 @@
     packages = with pkgs; [ # todo: fix? how would I install packages
       helix
       firefox
+      wezterm
       git
     ];
   };
