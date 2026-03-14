@@ -11,11 +11,10 @@
 
   outputs = {
     self,
-    lib,
     nixpkgs,
     nixpkgs-unstable,
   } @ inputs: let
-    myvars = import ./vars.nix { inherit lib; };
+    myvars = import ./vars.nix;
     mkHostConfig = hostname: nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit inputs self myvars;
