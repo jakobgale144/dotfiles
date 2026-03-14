@@ -7,5 +7,5 @@
   ];
 
   programs.niri.enable = true;
-  programe.firefox.enable = true;
+  programs.firefox.enable = true;
 }
