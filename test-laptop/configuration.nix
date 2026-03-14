@@ -7,10 +7,6 @@
 }:
 
 {
-  imports = [ # Import our hardware configuration 
-    ./hardware-configuration.nix
-  ];
-
   nixpkgs.config.allowUnfree = true; # Allows proprietary packages
 
   nix = let
