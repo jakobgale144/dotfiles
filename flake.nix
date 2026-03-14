@@ -15,7 +15,7 @@
     nixpkgs,
     nixpkgs-unstable,
   } @ inputs: let
-    myVars = import ./vars.nix { inherit lib; };
+    myvars = import ./vars.nix { inherit lib; };
     mkHostConfig = hostname: nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit inputs self myvars;
