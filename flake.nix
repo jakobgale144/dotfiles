@@ -17,7 +17,6 @@
   } @ inputs: let
     myVars = import ./vars.nix { inherit lib; };
     mkHostConfig = hostname: nixpkgs.lib.nixosSystem {
-      inherit system;
       specialArgs = {
         inherit inputs self myvars;
         username = myvars.username;
