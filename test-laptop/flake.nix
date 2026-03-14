@@ -17,14 +17,17 @@
     myvars = import ./vars.nix;
   in {
     imports = [
-      ./configuration.nix
-      ./boot-configuration.nix
-      ./packages.nix
+
     ];
     nixosConfigurations.test-laptop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {inherit inputs;};
-      modules = [./hardware-configuration.nix];
+      modules = [
+        ./configuration.nix
+        ./boot-configuration.nix
+        ./packages.nix
+        ./hardware-configuration.nix
+      ];
     };
   };
 }
