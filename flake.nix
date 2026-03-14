@@ -1,27 +1,35 @@
 {
-  description = "A simple NixOS flake";
+  description = "Test Nix Flake config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    # Nixpkgs
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
 
-    home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Nixpkgs Unstable
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations.test-vm = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-unstable,
+  } @ inputs: let
+    myVars = import ./vars.nix { inherit lib; };
+    mkHostConfig = hostname: nixpkgs.lib.nixosSystem {
+      inherit system;
+      specialArgs = {
+        inherit inputs self myvars;
+        username = myvars.username;
+      }
 
-        home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.test = import ./home.nix;
-        }
+      modules = [
+        ./core
+        ./hosts/${hostname}
       ];
+    };
+  in {
+    nixosConfigurations = {
+      test-laptop = mkHostConfig "test-laptop";
     };
   };
 }
