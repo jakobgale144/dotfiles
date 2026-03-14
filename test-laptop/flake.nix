@@ -14,7 +14,7 @@
     nixpkgs,
     nixpkgs-unstable,
   } @ inputs: let
-    myvars = import ./vars.nix { inherit lib };
+    myvars = import ./vars.nix { inherit lib; };
   in {
     imports = [
       ./configuration.nix
