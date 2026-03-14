@@ -9,16 +9,22 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs = inputs @ {
+  outputs = {
     self,
     nixpkgs,
     nixpkgs-unstable,
-  }: let
+  } @ inputs: let
+    myvars = import ./vars.nix { inherit lib };
   in {
+    imports = [
+      ./configuration.nix
+      ./boot-configuration.nix
+      ./packages.nix
+    ];
     nixosConfigurations.test-laptop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {inherit inputs;};
-      modules = [./configuration.nix];
+      modules = [./hardware-configuration.nix];
     };
   };
 }
