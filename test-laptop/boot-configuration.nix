@@ -68,9 +68,6 @@
       "subvol=@nix"
       "compress-force=zstd:1" # Force level 1 ZSTD compression on all files; quickest, most bang-for-buck
       "relatime"              # Write access time relative to it's creation/modification time
-      "discard=async"         # Asynchronus discard; free up deleted blocks in chunks
-      "space_cache=v2"        # Use a new and faster btrfs space cache
-      "ssd"                   # Specify this mount is on an SSD
     ];
   };
 
@@ -82,22 +79,6 @@
       "subvol=@tmp"
       "compress-force=zstd:1"
       "relatime"
-      "discard=async"
-      "space_cache=v2"
-      "ssd"
-    ];
-  };
-
-  # Contains all our logs (/var/log symlinks here)
-  fileSystems."/log" = {
-    device = "/dev/mapper/crypt";
-    fsType = "btrfs";
-    options = [ 
-      "subvol=@log"
-      "compress-force=zstd:1"
-      "discard=async"
-      "space_cache=v2"
-      "ssd"
     ];
   };
 
@@ -109,9 +90,6 @@
   #     "subvol=@home"
   #     "compress-force=zstd:1"
   #     "relatime"
-  #     "discard=async"
-  #     "space_cache=v2"
-  #     "ssd"
   #   ];
   # };
 
@@ -123,9 +101,6 @@
       "subvol=@persist"
       "compress-force=zstd:1"
       "relatime"
-      "discard=async"
-      "space_cache=v2"
-      "ssd"
     ];
     neededForBoot = true;
   };
@@ -138,9 +113,6 @@
       "subvol=@snapshots"
       "compress-force=zstd:1"
       "relatime"
-      "discard=async"
-      "space_cache=v2"
-      "ssd"
     ];
   };
 
@@ -150,8 +122,6 @@
     fsType = "btrfs";
     options = [ 
       "subvol=@swap"
-      "space_cache=v2"
-      "ssd"
       "ro"
     ];
   };
