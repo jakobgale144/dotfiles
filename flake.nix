@@ -20,7 +20,7 @@
       specialArgs = {
         inherit inputs self myvars;
         username = myvars.username;
-      }
+      };
 
       modules = [
         ./core
