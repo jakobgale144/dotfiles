@@ -22,18 +22,6 @@
   # Use latest Linux kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.initrd.availableKernelModules = [ # todo: add more based on errors 
-    "nvme"
-    "ahci"
-    "usbhid"
-    "xhci_pci"
-    "usb_storage"
-    "sd_mod"
-    "sdhci_pci"
-  ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ]; # KVM support
-  boot.extraModulePackages = [ ];
   boot.tmp.cleanOnBoot = true; # Clear /tmp on boot
 
   # todo: research boot.binfmt.emulatedSystems and preferStaticEmulators and its performance in emulation
