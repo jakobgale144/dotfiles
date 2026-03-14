@@ -30,18 +30,10 @@
   time.timeZone = "America/New_York";
 
   users.users.test = {
-    initialPassword = " ";
+    initialPassword = "";
     isNormalUser = true;
     extraGroups = ["wheel"];
-    packages = with pkgs; [ # todo: fix? how would I install packages
-      helix
-      firefox
-      wezterm
-      git
-    ];
   };
-
-  programs.niri.enable = true;
 
   # programs.firefox.enable = true;
 
