@@ -11,6 +11,7 @@
 
   outputs = {
     self,
+    lib,
     nixpkgs,
     nixpkgs-unstable,
   } @ inputs: let
