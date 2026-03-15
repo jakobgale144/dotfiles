@@ -133,4 +133,6 @@ in {
       "systemd-machine-id-setup --commit --root /persist"
     ];
   };
+
+  systemd.services."systemd-tmpfiles-setup".after = [ "systemd-sysusers.service" ];
 }
