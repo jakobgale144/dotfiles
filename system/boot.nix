@@ -126,15 +126,15 @@
   };
 
   # Our swapfile itself (read/write)
-  # fileSystems."/swap/swapfile" = {
-  #   depends = [ "/swap" ];
-  #   device = "/swap/swapfile";
-  #   fsType = "none";
-  #   options = [
-  #     "bind" # Bind means we're mounting this directory within another directory
-  #     "rw"
-  #   ];
-  # };
+  fileSystems."/swap/swapfile" = {
+    depends = [ "/swap" ];
+    device = "/swap/swapfile";
+    fsType = "none";
+    options = [
+      "bind" # Bind means we're mounting this directory within another directory
+      "rw"
+    ];
+  };
 
   swapDevices = [ # Point Nix in the direction of our swapfile, which is not a separate partition; hence the curly brackets
     { device = "/swap/swapfile"; }
