@@ -7,8 +7,7 @@
   ...
 }:
 let
-  # inherit (myvars) username;
-  inherit myvars;
+  inherit (myvars) username;
 in {
   imports = [
     ./boot.nix
@@ -31,13 +30,11 @@ in {
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
-  networking.hostName = "test-laptop";
-
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/New_York";
 
-  users.users.${myvars.username} = {
+  users.users.${username} = {
     initialPassword = "";
     isNormalUser = true;
     extraGroups = ["wheel"];
