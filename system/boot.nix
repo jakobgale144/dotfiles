@@ -70,28 +70,6 @@
     ];
   };
 
-  # Temporary directory; cleared on boot
-  fileSystems."/temp" = {
-    device = "/dev/mapper/crypt";
-    fsType = "btrfs";
-    options = [ 
-      "subvol=@temp"
-      "compress-force=zstd:1"
-      "relatime"
-    ];
-  };
-
-  # Home directory
-  # fileSystems."/home" = {
-  #   device = "/dev/mapper/crypt";
-  #  fsType = "btrfs";
-  #   options = [ 
-  #     "subvol=@home"
-  #     "compress-force=zstd:1"
-  #     "relatime"
-  #   ];
-  # };
-
   # Persistent directory; pats of our root that need to persist between boots
   fileSystems."/persist" = {
     device = "/dev/mapper/crypt";
