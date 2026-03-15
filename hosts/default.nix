@@ -6,11 +6,7 @@
   inherit (self) inputs;
   mkHost = hostname: system: nixpkgs.lib.nixosSystem {
     specialArgs = {
-      inherit [
-        inputs
-        myvars
-        preservation
-      ];
+      inherit myvars // inputs;
       flake = self;
     };
 
