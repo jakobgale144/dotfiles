@@ -12,7 +12,7 @@
 
     modules = [
       {
-        networking.hostName = name;
+        networking.hostName = hostname;
         nixpkgs.hostPlatform = system;
       }
       ../system
