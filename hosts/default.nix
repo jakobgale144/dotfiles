@@ -1,5 +1,6 @@
 {
   nixpkgs,
+  myvars,
   self,
   ...
 }: let

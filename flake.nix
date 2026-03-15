@@ -17,6 +17,6 @@
     nixpkgs,
     ...
   } @ inputs: {
-    nixosConfigurations = import ./hosts inputs myvars;
+    nixosConfigurations = import ./hosts inputs;
   };
 }
