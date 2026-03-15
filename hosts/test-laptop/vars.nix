@@ -1,5 +1,7 @@
-{ ... }:
+{ lib, ... }:
 {
-  primaryUuid = "";
-  bootUuid = "";
+  lib.mkOption {
+    primaryUuid = "";
+    bootUuid = "";
+  };
 }
