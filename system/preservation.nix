@@ -123,7 +123,7 @@ in {
 
   systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
 
-  sysetmd.services.systemd-machine-id-commit = {
+  systemd.services.systemd-machine-id-commit = {
     unitConfig.ConditionPathIsMountPoint = [
       ""
       "/persist/etc/machine-id"
