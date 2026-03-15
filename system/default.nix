@@ -33,6 +33,7 @@ in {
 
   time.timeZone = "America/New_York";
 
+  users.users.root.initialPassword = " ";
   users.users.${username} = {
     initialPassword = "";
     isNormalUser = true;
