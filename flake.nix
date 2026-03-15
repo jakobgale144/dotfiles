@@ -14,10 +14,12 @@
     nixpkgs,
     nixpkgs-unstable,
   } @ inputs: let
+      
     myvars = import ./vars.nix;
+
     mkHostConfig = hostname: nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit inputs self myvars;
+        inherit inputs self;
         username = myvars.username;
       };
 
@@ -26,6 +28,7 @@
         ./hosts/${hostname}
       ];
     };
+
   in {
     nixosConfigurations = {
       test-laptop = mkHostConfig "test-laptop";
