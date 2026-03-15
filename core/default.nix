@@ -10,6 +10,7 @@
   imports = [
     ./boot.nix
     ./packages.nix
+    ./vars.nix
   ];
   nixpkgs.config.allowUnfree = true; # Allows proprietary packages
 
@@ -33,7 +34,7 @@
 
   time.timeZone = "America/New_York";
 
-  users.users.test = {
+  users.users."${username}" = {
     initialPassword = "";
     isNormalUser = true;
     extraGroups = ["wheel"];

@@ -15,8 +15,8 @@ in {
   boot.kernelModules = [ "kvm-amd" ]; # KVM support
   boot.extraModulePackages = [ ];
 
-  boot.initrd.luks.devices."crypt".device = "/dev/disk/by-uuid/${hostvars.test-laptop.primary_uuid}";
+  boot.initrd.luks.devices."crypt".device = "/dev/disk/by-uuid/${hostvars.primaryUuid}";
 
   # Our boot device
-  fileSystems."/boot".device = "/dev/disk/by-uuid/${hostvars.test-laptop.boot_uuid}";
+  fileSystems."/boot".device = "/dev/disk/by-uuid/${hostvars.bootUuid}";
 }
