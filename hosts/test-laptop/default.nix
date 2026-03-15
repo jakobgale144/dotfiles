@@ -17,6 +17,5 @@ in {
 
   boot.initrd.luks.devices."crypt".device = "/dev/disk/by-uuid/${hostvars.primaryUuid}";
 
-  # Our boot device
   fileSystems."/boot".device = "/dev/disk/by-uuid/${hostvars.bootUuid}";
 }
