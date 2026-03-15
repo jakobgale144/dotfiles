@@ -37,7 +37,7 @@ in {
 
   time.timeZone = "America/New_York";
 
-  users.users.${username} = {
+  users.users.${myvars.username} = {
     initialPassword = "";
     isNormalUser = true;
     extraGroups = ["wheel"];
