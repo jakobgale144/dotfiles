@@ -12,11 +12,11 @@
     preservation.url = "github:nix-community/preservation";
   };
 
-  outputs = {
+  outputs = inputs @ {
     self,
     nixpkgs,
     # nixpkgs-unstable,
-  } @ inputs: {
+  }: {
     nixosConfigurations = import ./hosts inputs;
   };
 }
