@@ -1,12 +1,14 @@
 {
   inputs,
+  # config,
   myvars,
   lib,
   pkgs,
   ...
 }:
 let
-  inherit (myvars) username;
+  # inherit (myvars) username;
+  inherit myvars;
 in {
   imports = [
     ./boot.nix
