@@ -10,7 +10,6 @@
   imports = [
     ./boot.nix
     ./packages.nix
-    ./vars.nix
   ];
   nixpkgs.config.allowUnfree = true; # Allows proprietary packages
 
