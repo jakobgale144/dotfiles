@@ -1,9 +1,9 @@
 {
   nixpkgs,
-  inputs,
   self,
   ...
 }: let
+  inherit (self) inputs;
   mkHost = hostname: system: nixpkgs.lib.nixosSystem {
     specialArgs = {
       inherit inputs;
