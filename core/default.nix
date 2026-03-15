@@ -5,12 +5,12 @@
   pkgs,
   ...
 }:
-
-{
+let
+  myvars = import ./vars.nix;
+in {
   imports = [
     ./boot.nix
     ./packages.nix
-    ./vars.nix
   ];
   nixpkgs.config.allowUnfree = true; # Allows proprietary packages
 
@@ -34,12 +34,12 @@
 
   time.timeZone = "America/New_York";
 
-  users.users."${username}" = {
+  users.users."${myvars.username}" = {
     initialPassword = "";
     isNormalUser = true;
     extraGroups = ["wheel"];
   };
 
   system.stateVersion = "25.11"; # Do you know what you're doing?
-}
+};
 
