@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 let
   hostvars = import ./vars.nix;
 in {
