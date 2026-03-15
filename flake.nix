@@ -16,7 +16,9 @@
     self,
     nixpkgs,
     ...
-  } @ inputs: {
-    nixosConfigurations = import ./hosts inputs;
+  } @ inputs: let
+      myvars = import ./system/vars.nix;
+    in {
+    nixosConfigurations = import ./hosts inputs myvars;
   };
 }
