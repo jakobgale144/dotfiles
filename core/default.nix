@@ -7,7 +7,7 @@
   ...
 }:
 let
-  import (myvars) username;
+  inherit (myvars) username;
 in {
   imports = [
     ./boot.nix
