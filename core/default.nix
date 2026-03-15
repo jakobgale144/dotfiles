@@ -1,6 +1,7 @@
 {
   inputs,
   config,
+  myvars,
   lib,
   pkgs,
   ...
