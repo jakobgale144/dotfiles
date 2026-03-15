@@ -19,4 +19,4 @@ in {
 
   # Our boot device
   fileSystems."/boot".device = "/dev/disk/by-uuid/${hostvars.test-laptop.boot_uuid}";
-};
+}
