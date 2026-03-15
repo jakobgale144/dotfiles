@@ -8,7 +8,7 @@
 let
   inherit (myvars) username;
 in {
-  imports = [ preservation.nixosModules.default ];
+  imports = [ inputs.preservation.nixosModules.default ];
 
   preservation.enable = true;
   preservation.preserveAt."/persist" = {
