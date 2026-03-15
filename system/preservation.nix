@@ -13,15 +13,15 @@ in {
   preservation.enable = true;
   preservation.preserveAt."/persist" = {
     directories = [
-      /etc/NetworkManager/system-connections
-      /etc/ssh
-      /etc/nix/inputs
-      # /etc/agenix
+      "/etc/NetworkManager/system-connections"
+      "/etc/ssh"
+      "/etc/nix/inputs"
+      # "/etc/agenix"
 
-      /var/log
+      "/var/log"
 
-      /var/lib/nixos
-      /var/lib/systemd
+      "/var/lib/nixos"
+      "/var/lib/systemd"
       {
         directory = "/var/lib/private";
         mode = "0700";
@@ -29,8 +29,8 @@ in {
 
       # todo: virtualization
 
-      # /var/lib/bluetooth
-      /var/lib/NetworkManager
+      # "/var/lib/bluetooth"
+      "/var/lib/NetworkManager"
     ];
     
     files = [
