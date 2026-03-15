@@ -21,8 +21,7 @@
 
   # Use latest Linux kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  boot.tmp.cleanOnBoot = true; # Clear /tmp on boot
+  # boot.tmp.cleanOnBoot = true; # Clear /tmp on boot  Necessary? We delete / anyways...
 
   # todo: research boot.binfmt.emulatedSystems and preferStaticEmulators and its performance in emulation
 
