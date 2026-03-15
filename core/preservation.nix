@@ -1,6 +1,5 @@
 {
   preservation,
-  config,
   myvars,
   lib,
   pkgs,
