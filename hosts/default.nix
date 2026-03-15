@@ -1,5 +1,6 @@
 {
   nixpkgs,
+  inputs,
   self,
   ...
 }: let
