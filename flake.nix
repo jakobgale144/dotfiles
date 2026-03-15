@@ -19,6 +19,6 @@
   } @ inputs: let
     myvars = import ./system/vars;
   in {
-    nixosConfigurations = import ./hosts self;
+    nixosConfigurations = import ./hosts { inherit self myvars; };
   };
 }
