@@ -1,5 +1,5 @@
 {
-  preservation,
+  inputs,
   myvars,
   lib,
   pkgs,
