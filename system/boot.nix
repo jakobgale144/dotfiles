@@ -71,11 +71,11 @@
   };
 
   # Temporary directory; cleared on boot
-  fileSystems."/tmp" = {
+  fileSystems."/temp" = {
     device = "/dev/mapper/crypt";
     fsType = "btrfs";
     options = [ 
-      "subvol=@tmp"
+      "subvol=@temp"
       "compress-force=zstd:1"
       "relatime"
     ];
