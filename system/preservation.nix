@@ -8,7 +8,7 @@
 let
   inherit (myvars) username;
 in {
-  imports = [ preservation.nixosModules.default ];
+  # imports = [ preservation.nixosModules.default ];
 
   preservation.enable = true;
   preservation.preserveAt."/persist" = {
@@ -105,6 +105,7 @@ in {
     };
   };
 
+  boot.initrd.systemd.enable = true;
   systemd.tmpfiles.settings.preservation =
     let
       permission = {
