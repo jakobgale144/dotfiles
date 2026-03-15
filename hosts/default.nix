@@ -2,7 +2,7 @@
   nixpkgs,
   self,
   inputs,
-  myvars
+  myvars,
   ...
 }: let
   mkHost = hostname: system: nixpkgs.lib.nixosSystem {
