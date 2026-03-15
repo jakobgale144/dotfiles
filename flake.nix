@@ -16,7 +16,6 @@
     self,
     nixpkgs,
     nixpkgs-unstable,
-    preservation,
   } @ inputs:
   let
     mkHostConfig = hostname: nixpkgs.lib.nixosSystem {
@@ -25,7 +24,7 @@
       };
 
       modules = [
-        ./core
+        ./system
         ./hosts/${hostname}
       ];
     };
