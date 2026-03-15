@@ -41,5 +41,4 @@ in {
   };
 
   system.stateVersion = "25.11"; # Do you know what you're doing?
-};
-
+}
