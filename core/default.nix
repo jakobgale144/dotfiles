@@ -1,16 +1,18 @@
 {
   inputs,
   config,
+  myvars,
   lib,
   pkgs,
   ...
 }:
 let
-  myvars = import ./vars.nix;
+  import (myvars) username;
 in {
   imports = [
     ./boot.nix
     ./packages.nix
+    ./preservation.nix
   ];
   nixpkgs.config.allowUnfree = true; # Allows proprietary packages
 
@@ -34,7 +36,7 @@ in {
 
   time.timeZone = "America/New_York";
 
-  users.users."${myvars.username}" = {
+  users.users.${username} = {
     initialPassword = "";
     isNormalUser = true;
     extraGroups = ["wheel"];

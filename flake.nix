@@ -7,6 +7,9 @@
 
     # Nixpkgs Unstable
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+   # Preservation
+   preservation.url = "github:nix-community/preservation";
   };
 
   outputs = {
