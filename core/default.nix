@@ -1,8 +1,6 @@
 {
   inputs,
   config,
-  myvars,
-  preservation,
   lib,
   pkgs,
   ...
