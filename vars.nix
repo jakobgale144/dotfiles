@@ -1,4 +1,4 @@
 {
   username = "test";
-  homeDir = /home/${username};
+  # homeDir = /home/${username};
 }

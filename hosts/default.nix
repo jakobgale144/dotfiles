@@ -3,7 +3,8 @@
   vars,
   ...
 }: let
-  inherit (self) (inputs) nixpkgs home-manager;
+  inherit (self) inputs;
+  inherit (inputs) nixpkgs home-manager;
   mkHost = hostname: system: nixpkgs.lib.nixosSystem {
     specialArgs = {
       inherit inputs vars;
@@ -16,7 +17,6 @@
         nixpkgs.hostPlatform = system;
       }
       ../system
-      ../user
       ./${hostname}
     ];
   };

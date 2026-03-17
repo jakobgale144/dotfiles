@@ -10,6 +10,7 @@
     ./boot.nix
     ./packages.nix
     ./preservation.nix
+    ./user.nix
     ./desktop
   ];
   nixpkgs.config.allowUnfree = true; # Allows proprietary packages
