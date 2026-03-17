@@ -1,13 +1,11 @@
 {
   inputs,
-  myvars,
+  vars,
   lib,
   pkgs,
   ...
 }:
-let
-  inherit (myvars) username;
-in {
+{
   imports = [
     ./boot.nix
     ./packages.nix
@@ -35,7 +33,7 @@ in {
   time.timeZone = "America/New_York";
 
   users.users.root.initialPassword = "password";
-  users.users.${username} = {
+  users.users.${vars.username} = {
     initialPassword = "password";
     isNormalUser = true;
     extraGroups = ["wheel"];

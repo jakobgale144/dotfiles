@@ -8,17 +8,19 @@
     # Nixpkgs Unstable
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # Home Manager
+    home-manager.url = "github:nix-community/home-manager";
+
     # Preservation
     preservation.url = "github:nix-community/preservation";
   };
 
   outputs = {
     self,
-    nixpkgs,
     ...
   } @ inputs: let
-    myvars = import ./vars;
+    vars = import ./vars.nix;
   in {
-    nixosConfigurations = import ./hosts { inherit self nixpkgs myvars; };
+    nixosConfigurations = import ./hosts { inherit self vars; };
   };
 }

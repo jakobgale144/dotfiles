@@ -1,6 +1,6 @@
 { ... }:
 let
-  hostvars = import ./vars.nix;
+  hostvars = import ./hostvars.nix;
 in {
   boot.initrd.availableKernelModules = [ # todo: add more based on errors 
     "nvme"

@@ -1,13 +1,12 @@
 {
   self,
-  myvars,
-  nixpkgs,
+  vars,
   ...
 }: let
-  inherit (self) inputs;
+  inherit (self) (inputs) nixpkgs home-manager;
   mkHost = hostname: system: nixpkgs.lib.nixosSystem {
     specialArgs = {
-      inherit inputs myvars;
+      inherit inputs vars;
       flake = self;
     };
 

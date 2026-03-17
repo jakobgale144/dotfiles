@@ -1,13 +1,11 @@
 {
   inputs,
-  myvars,
+  vars,
   lib,
   pkgs,
   ...
 }:
-let
-  inherit (myvars) username;
-in {
+{
   imports = [ inputs.preservation.nixosModules.default ];
 
   preservation.enable = true;
@@ -44,7 +42,7 @@ in {
       # }
     ];
 
-    users.${username} = {
+    users.${vars.username} = {
       commonMountOptions = [
         "x-gvfs-hide"
       ];
@@ -113,16 +111,16 @@ in {
   systemd.tmpfiles.settings.preservation =
     let
       permission = {
-        user = username;
-        group = lib.mkForce username;
+        user = vars.username;
+        group = lib.mkForce vars.username;
         mode = lib.mkForce "0750";
       };
     in {
-      "/home/${username}/.config".d = permission;
-      "/home/${username}/.local".d = permission;
-      "/home/${username}/.local/share".d = permission;
-      "/home/${username}/.local/state".d = permission;
-      "/home/${username}/.local/state/nix".d = permission;
+      "/home/${vars.username}/.config".d = permission;
+      "/home/${vars.username}/.local".d = permission;
+      "/home/${vars.username}/.local/share".d = permission;
+      "/home/${vars.username}/.local/state".d = permission;
+      "/home/${vars.username}/.local/state/nix".d = permission;
     };
 
   systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
