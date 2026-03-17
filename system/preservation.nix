@@ -38,6 +38,10 @@ in {
         file = "/etc/machine-id";
         inInitrd = true;
       }
+      # {
+      #   file = "/etc/shadow";
+      #   mode = "0700";
+      # }
     ];
 
     users.${username} = {

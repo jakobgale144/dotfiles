@@ -6,6 +6,5 @@
     git
   ];
 
-  programs.niri.enable = true;
   programs.firefox.enable = true;
 }

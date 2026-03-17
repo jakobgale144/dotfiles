@@ -17,7 +17,7 @@
     nixpkgs,
     ...
   } @ inputs: let
-    myvars = import ./system/vars;
+    myvars = import ./vars;
   in {
     nixosConfigurations = import ./hosts { inherit self nixpkgs myvars; };
   };

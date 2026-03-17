@@ -12,6 +12,7 @@ in {
     ./boot.nix
     ./packages.nix
     ./preservation.nix
+    ./desktop
   ];
   nixpkgs.config.allowUnfree = true; # Allows proprietary packages
 
@@ -33,9 +34,9 @@ in {
 
   time.timeZone = "America/New_York";
 
-  users.users.root.initialPassword = " ";
+  users.users.root.initialPassword = "password";
   users.users.${username} = {
-    initialPassword = "";
+    initialPassword = "password";
     isNormalUser = true;
     extraGroups = ["wheel"];
   };
