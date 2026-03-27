@@ -4,23 +4,26 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-
     # Nixpkgs Unstable
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # Home Manager
-    home-manager.url = "github:nix-community/home-manager";
+    # Flake Parts
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    # Import Tree
+    import-tree.url = "github:vic/import-tree";
+
+    # Wrapper Modules
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
 
     # Preservation
     preservation.url = "github:nix-community/preservation";
   };
 
-  outputs = {
-    self,
-    ...
-  } @ inputs: let
-    vars = import ./vars.nix;
-  in {
-    nixosConfigurations = import ./hosts { inherit self vars; };
-  };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (
+    inputs.import-tree [
+      ./hosts
+      ./system
+      ./user
+    ]
+  );
 }

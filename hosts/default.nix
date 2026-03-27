@@ -1,25 +1,14 @@
+{ self, inputs, ... }:
 {
-  self,
-  vars,
-  ...
-}: let
-  inherit (self) inputs;
-  inherit (inputs) nixpkgs home-manager;
-  mkHost = hostname: system: nixpkgs.lib.nixosSystem {
-    specialArgs = {
-      inherit inputs vars;
-      flake = self;
-    };
-
+  flake.nixosConfigurations.test-laptop = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       {
-        networking.hostName = hostname;
-        nixpkgs.hostPlatform = system;
+        networking.hostName = "test-laptop";
+        nixpkgs.hostPlatform = "x86_64-linux";
       }
-      ../system
-      ./${hostname}
+      self.nixosModules.test-laptop
+      self.nixosModules.system
+      self.nixosModules.user
     ];
   };
-in {
-  test-laptop = mkHost "test-laptop" "x86_64-linux";
 }
