@@ -12,6 +12,9 @@
     # Import Tree
     import-tree.url = "github:vic/import-tree";
 
+    # Hjem
+    hjem.url = "github:feel-co/hjem";
+
     # Wrapper Modules
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
 
@@ -20,10 +23,6 @@
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (
-    inputs.import-tree [
-      ./hosts
-      ./system
-      ./user
-    ]
+    inputs.import-tree ./modules;
   );
 }
