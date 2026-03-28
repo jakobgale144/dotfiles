@@ -2,7 +2,10 @@
 {
   den.aspects.filesystems = den.lib.parametric {
     includes = [
-      ({ host, ... }: {
+      ({ host, lib, ... }: {
+          nixos.assertions = [
+            { assertion = false; message = "host keys: ${builtins.toJSON (builtins.attrNames host)}"; }
+          ];
           nixos.boot.initrd.luks.devices."crypt".device = "/dev/disk/by-uuid/${host.primaryUuid}";
           nixos.fileSystems."/boot".device = "/dev/disk/by-uuid/${host.bootUuid}";
       })
