@@ -2,9 +2,9 @@
 {
   den.aspects.filesystems = den.lib.parametric {
     includes = [
-      ({ host, ... }: { # todo: fix so I don't need lib
-          nixos.boot.initrd.luks.devices."crypt".device = "/dev/disk/by-uuid/${host.primaryUuid}";
-          nixos.fileSystems."/boot".device = "/dev/disk/by-uuid/${host.bootUuid}";
+      ({ host }: {
+        nixos.boot.initrd.luks.devices."crypt".device = "/dev/disk/by-uuid/${host.primaryUuid}";
+        nixos.fileSystems."/boot".device = "/dev/disk/by-uuid/${host.bootUuid}";
       })
     ];
 
