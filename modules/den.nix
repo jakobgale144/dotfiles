@@ -11,11 +11,5 @@
     ];
   };
 
-  den.schema.host = {
-    config.hjem.module = inputs.hjem.nixosModules.default;
-  };
-
-  den.schema.user = { lib, ... }: {
-    config.classes = lib.mkDefault [ "hjem" ];
-  };
+  den.schema.host.hjem.enable = true;
 }
