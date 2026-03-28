@@ -11,11 +11,11 @@
     den.aspects.test-laptop-hardware
   ];
 
-  den.aspects.test-laptop-hardware = { lib, config, ... }: {
+  den.aspects.test-laptop-hardware = {
     primaryUuid = "c5903369-fc45-44f8-b248-ef7260f24e92";
     bootUuid = "5928-46CE";
 
-    nixos = {
+    nixos = { lib, config, ... }: {
       boot.initrd.availableKernelModules = [ # todo: add more based on errors 
         "nvme"
         "ahci"
