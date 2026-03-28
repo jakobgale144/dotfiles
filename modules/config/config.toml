@@ -1,0 +1,100 @@
+theme = "catppuccin_macchiato"
+
+[editor]
+scroll-lines = 3
+shell = ["fish", "-c"]
+line-number = "relative"
+cursorline = true
+cursorcolumn = true
+completion-timeout = 5
+bufferline = "multiple"
+trim-final-newlines = true
+trim-trailing-whitespace = true
+jump-label-alphabet = "hjklasdfgyuiopqwertnmzxcvb"
+end-of-line-diagnostics = "hint"
+color-modes = true
+
+soft-wrap.enable = true
+text-width = 100
+soft-wrap.wrap-at-text-width = true
+rulers = [ 100 ]
+
+lsp.display-progress-messages = true
+lsp.display-inlay-hints = true
+
+cursor-shape.insert = "bar"
+cursor-shape.select = "underline"
+
+auto-save.after-delay.enable = true
+
+whitespace.characters.tabpad = " "
+
+inline-diagnostics.cursor-line = "hint"
+inline-diagnostics.other-lines = "error"
+
+[editor.statusline]
+left = ["spinner", "register", "mode"]
+center = ["file-name", "read-only-indicator", "file-modification-indicator"]
+right = [
+  "workspace-diagnostics",
+  "diagnostics",
+  "version-control",
+  "selections",
+  "position",
+  "total-line-numbers"
+]
+separator = "│"
+mode.normal = "Normal"
+mode.insert = "Insert"
+mode.select = "Select"
+
+[editor.whitespace.render]
+space = "none"
+tab = "all"
+nbsp = "all"
+nnbsp = "all"
+newline = "none"
+
+[editor.indent-guides]
+render = true
+character = "╎"
+skip-levels = 1
+
+# Key remapping
+
+[keys.normal]
+# Navigation and movement
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+g.e = "goto_file_end"
+ret = ["move_line_down", "goto_first_nonwhitespace"]
+A-ret = ["move_line_up", "goto_first_nonwhitespace"]
+
+# Selection and editing
+X = "extend_line_above"
+C-k = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+]
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+
+# System integration
+A-r = [":config-reload", ":reload"]
+
+# Git integration
+A-g.b = ":sh git blame -L %{cursor_line},+1 %{buffer_name}"
+A-g.s = ":sh git status --porcelain"
+A-g.l = ":sh git log --oneline -10 %{buffer_name}"
+
+# Utility shortcuts (backspace prefix)
+backspace.d = ":yank-diagnostic"
+backspace.h = ":toggle-option file-picker.hidden"
+backspace.i = ":toggle-option file-picker.git-ignore"
+backspace.l = ":o ~/.config/helix/languages.toml"
+backspace.c = ":config-open"
+
+[keys.normal.space]
+# Yazelix sidebar integration - reveal current file in Yazi sidebar
+Y = ":sh nu ~/.config/yazelix/nushell/scripts/integrations/reveal_in_yazi.nu \"%{buffer_name}\""
