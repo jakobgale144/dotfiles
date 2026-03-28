@@ -21,7 +21,7 @@
       Unit = {
         Description = "Start noctalia shell after Niri";
         After = "niri.service";
-        PartOf = "graphical-session.target"
+        PartOf = "graphical-session.target";
       };
 
       Service = {
