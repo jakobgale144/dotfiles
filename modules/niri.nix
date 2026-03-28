@@ -16,11 +16,11 @@
   };
 
   den.aspects.noctalia.hjem = { pkgs, ... }: {
-    packages = [ pkgs.noctalia ];
+    packages = [ pkgs.noctalia-shell ];
 
     systemd.services."noctalia-shell" = {
       Unit = {
-        Description = "Start noctalia shell after Niri";
+        Description = "Start Noctalia after Niri";
         After = "niri.service";
         PartOf = "graphical-session.target";
       };
