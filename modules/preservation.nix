@@ -1,3 +1,4 @@
+{ den, inputs, ... }:
 {
   den.aspects.preservation = { user, lib, pkgs, ... }: {
     imports = [ inputs.preservation.nixosModules.default ];
