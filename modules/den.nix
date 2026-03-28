@@ -1,3 +1,4 @@
+{ den, ... }:
 {
   imports = [ inputs.den.flakeModule ];
 
