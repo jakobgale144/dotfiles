@@ -1,8 +1,10 @@
 {
   den.aspects.system.nixos = {
     nixpkgs.config.allowUnfree = true; # Allows proprietary packages
+    networking.networkmanager.enable = true;
+    time.timeZone = "America/New_York";
 
-    nixos = { inputs, lib, pkgs, ... }:
+    ({ inputs, lib, pkgs, ... }:
     let
       flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
     in {
@@ -15,9 +17,6 @@
       # Make flake registry and Nix path match flake inputs
       registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
-
-      networking.networkmanager.enable = true;
-      time.timeZone = "America/New_York";
-    };
+    };)
   };
 }
