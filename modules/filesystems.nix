@@ -1,5 +1,5 @@
 {
-  den.aspects.filesystems.nixos = { host, ... }{
+  den.aspects.filesystems.nixos = { host, ... }: {
     boot.initrd.luks.devices."crypt".device = "/dev/disk/by-uuid/${host.primaryUuid}";
     
     # We can access all of BTRFS' subvolumes from /pool
