@@ -1,6 +1,5 @@
-{ self, inputs, ... }:
 {
-  flake.nixosModules.preservation = { lib, pkgs, vars, ... }: {
+  den.aspects.preservation = { user, lib, pkgs, ... }: {
     imports = [ inputs.preservation.nixosModules.default ];
 
     preservation.enable = true;
@@ -37,7 +36,7 @@
         # }
       ];
 
-      users.${vars.username} = {
+      users.${user.userName} = {
         commonMountOptions = [
           "x-gvfs-hide"
         ];
@@ -102,37 +101,39 @@
       };
     };
 
-    boot.initrd.systemd.enable = true;
-    systemd.tmpfiles.settings.preservation =
-      let
-        permission = {
-          user = vars.username;
-          group = lib.mkForce vars.username;
-          mode = lib.mkForce "0750";
+    nixos = {
+      boot.initrd.systemd.enable = true;
+      systemd.tmpfiles.settings.preservation =
+        let
+          permission = {
+            user = user.userName;
+            group = lib.mkForce user.userName;
+            mode = lib.mkForce "0750";
+          };
+        in {
+          "/home/${user.userName}/.config".d = permission;
+          "/home/${user.userName}/.local".d = permission;
+          "/home/${user.userName}/.local/share".d = permission;
+          "/home/${user.userName}/.local/state".d = permission;
+          "/home/${user.userName}/.local/state/nix".d = permission;
         };
-      in {
-        "/home/${vars.username}/.config".d = permission;
-        "/home/${vars.username}/.local".d = permission;
-        "/home/${vars.username}/.local/share".d = permission;
-        "/home/${vars.username}/.local/state".d = permission;
-        "/home/${vars.username}/.local/state/nix".d = permission;
+
+      systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
+
+      systemd.services.systemd-machine-id-commit = {
+        unitConfig.ConditionPathIsMountPoint = [
+          ""
+          "/persist/etc/machine-id"
+        ];
+        serviceConfig.ExecStart = [
+          ""
+          "systemd-machine-id-setup --commit --root /persist"
+        ];
       };
 
-    systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
-
-    systemd.services.systemd-machine-id-commit = {
-      unitConfig.ConditionPathIsMountPoint = [
-        ""
-        "/persist/etc/machine-id"
-      ];
-      serviceConfig.ExecStart = [
-        ""
-        "systemd-machine-id-setup --commit --root /persist"
-      ];
+      # The below fixes an issue on first bootup where systemd attempts to look for
+      # the defined groups and users before those users/groups have been created.
+      # systemd.services."systemd-tmpfiles-setup".after = [ "systemd-sysusers.service" ];
     };
-
-    # The below fixes an issue on first bootup where systemd attempts to look for
-    # the defined groups and users before those users/groups have been created.
-    # systemd.services."systemd-tmpfiles-setup".after = [ "systemd-sysusers.service" ];
   };
 }

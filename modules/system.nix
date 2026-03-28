@@ -1,11 +1,5 @@
-{ self, inputs, ... }:
 {
-  flake.nixosConfigurations.general = { pkgs, lib, ... }: {
-    imports = [
-      self.nixosModules.boot
-      self.nixosModules.preservation
-    ];
-    
+  den.aspects.system.nixos = { lib, pkgs, ... }: {
     nixpkgs.config.allowUnfree = true; # Allows proprietary packages
 
     nix = let
@@ -25,7 +19,5 @@
     networking.networkmanager.enable = true;
 
     time.timeZone = "America/New_York";
-
-    system.stateVersion = "25.11"; # Do you know what you're doing?
   };
 }
