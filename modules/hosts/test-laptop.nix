@@ -1,4 +1,4 @@
-{ den, inputs, ... }:
+{ den, ... }:
 {
   den.hosts.x86_64-linux.test-laptop.users.test = { };
 
@@ -8,7 +8,7 @@
     den.aspects.preservation
     den.aspects.system
 
-    den.aspect.test-laptop-hardware
+    den.aspects.test-laptop-hardware
   ];
 
   den.aspects.test-laptop-hardware = { lib, config, ... }: {
