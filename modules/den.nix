@@ -11,7 +11,7 @@
     ];
   };
 
-  den.schema.host = { lib, ... }: {
+  den.schema.host = {
     config.hjem.module = inputs.hjem.nixosModules.default;
   };
 
