@@ -2,7 +2,7 @@
 {
   den.aspects.filesystems = den.lib.parametric {
     includes = [
-      ({ host, ... }: {
+      ({ host, lib, ... }: {
           # nixos.assertions = [
           #   { assertion = false; message = "host keys: ${builtins.toJSON (builtins.attrNames host)}"; }
           # ];
