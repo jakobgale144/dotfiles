@@ -1,5 +1,6 @@
+{ inputs, ... }
 {
-  den.aspects.system.nixos = { inputs, lib, pkgs, ... }: {
+  den.aspects.system.nixos = { lib, pkgs, ... }: {
     nixpkgs.config.allowUnfree = true; # Allows proprietary packages
 
     nix = let
