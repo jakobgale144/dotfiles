@@ -1,3 +1,4 @@
+{ den, ... }:
 {
   den.aspects.filesystems = den.lib.parametric {
     includes = [
@@ -19,6 +20,8 @@
       fileSystems."/" = {
         device = "tmpfs"; # Erase your darlings!
         fsType = "tmpfs";
+boot.initrd.luks.devices."crypt".device = "/dev/disk/by-uuid/${host.primaryUuid}";
+    device = "/dev/disk/by-uuid/${host.bootUuid}";
         options = [
           "relatime"
           "mode=755" # systemd defaults to 777, which sometimes causes problems
