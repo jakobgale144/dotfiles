@@ -1,6 +1,6 @@
 { den, inputs, ... }:
 {
-  imports = [ inputs.den.flakeModule ];
+  # imports = [ inputs.den.flakeModule ];
 
   den.default = {
     nixos.system.stateVersion = "25.11";
