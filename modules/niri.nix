@@ -15,22 +15,24 @@
     };
   };
 
-  den.aspects.noctalia.hjem = { pkgs, ... }: {
-    packages = [ pkgs.noctalia-shell ];
+  den.aspects.noctalia = {
+    hjem = { pkgs, ... }: {
+      packages = [ pkgs.noctalia-shell ];
 
-    systemd.services."noctalia-shell" = {
-      Unit = {
-        Description = "Start Noctalia after Niri";
-        After = "niri.service";
-        PartOf = "graphical-session.target";
+      systemd.services."noctalia-shell" = {
+        Unit = {
+          Description = "Start Noctalia after Niri";
+          After = "niri.service";
+          PartOf = "graphical-session.target";
+        };
+
+        Service = {
+          ExecStart = "${pkgs.noctalia-shell}/bin/noctalia";
+          Restart = "on-failure";
+        };
+
+        Install.WantedBy = [ "graphical-session.target" ];
       };
-
-      Service = {
-        ExecStart = "${pkgs.noctalia}/bin/noctalia";
-        Restart = "on-failure";
-      };
-
-      Install.WantedBy = [ "graphical-session.target" ];
     };
   };
   
