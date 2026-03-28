@@ -1,4 +1,4 @@
-{ den, inputs, ... }:
+{ den, ... }:
 {
   imports = [ inputs.den.flakeModule ];
 
@@ -12,7 +12,7 @@
     ];
   };
 
-  den.schema.host = { host, lib, ... }: {
+  den.schema.host = { host, inputs, lib, ... }: {
     config.hjem.module = inputs.hjem.nixosModules.default;
   };
 

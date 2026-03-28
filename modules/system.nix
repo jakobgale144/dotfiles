@@ -1,9 +1,8 @@
-# { inputs, ... }:
 {
   den.aspects.system.nixos = {
     nixpkgs.config.allowUnfree = true; # Allows proprietary packages
 
-    nix = { lib, pkgs, inputs, ... }:
+    nix = { inputs, lib, pkgs, ... }:
     let
       flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
     in {
