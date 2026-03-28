@@ -34,7 +34,7 @@
     };
   };
   
-  den.aspects.greetd.nixos = { user, ... }: {
+  den.aspects.greetd.nixos = { user, pkgs, ... }: {
     # services.xserver.enable = false; # Necessary?
     services.greetd = {
       enable = true;
