@@ -1,4 +1,4 @@
-{ inputs, ... }
+{ inputs, ... }:
 {
   den.aspects.system.nixos = {
     nixpkgs.config.allowUnfree = true; # Allows proprietary packages
