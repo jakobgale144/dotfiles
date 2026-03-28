@@ -12,7 +12,7 @@
 
     nixos = {
       users.users.root.initialPassword = "jkl";
-      users.users.${vars.username} = {
+      users.users.${user.userName} = {
         initialPassword = "jkl";
         isNormalUser = true;
         extraGroups = [ "wheel" ];
