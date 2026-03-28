@@ -11,9 +11,9 @@
     };
 
     nixos = {
-      users.users.root.initialPassword = " ";
+      users.users.root.initialPassword = "jkl";
       users.users.${vars.username} = {
-        initialPassword = " ";
+        initialPassword = "jkl";
         isNormalUser = true;
         extraGroups = [ "wheel" ];
       };

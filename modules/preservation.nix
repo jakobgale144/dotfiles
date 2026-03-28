@@ -136,7 +136,7 @@
 
           # The below fixes an issue on first bootup where systemd attempts to look for
           # the defined groups and users before those users/groups have been created.
-          # systemd.services."systemd-tmpfiles-setup".after = [ "systemd-sysusers.service" ];
+          systemd.services."systemd-tmpfiles-setup".after = [ "systemd-sysusers.service" ];
         };
       })
     ];
