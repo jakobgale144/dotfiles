@@ -1,3 +1,4 @@
+{ den, ... }:
 {
   den.hosts.x86_64-linux.test-laptop.users.test = { };
 
