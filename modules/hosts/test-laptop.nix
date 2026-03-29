@@ -7,6 +7,9 @@
     bootUuid = "5928-46CE";
 
     classes = [ "hjem" ]; # todo: comment out one by one to see if necessary
+    
+    hjem.enable =  true; # todo: fix? necessary?
+    # hjem.clobberByDefault = true;
 
     includes = [
       den.aspects.boot
