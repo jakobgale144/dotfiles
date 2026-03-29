@@ -11,5 +11,10 @@
     ];
   };
 
-  den.schema.host.hjem.enable = true; # todo: fix? necessary?
+  den.schema.host = {
+    options.bootUuid = lib.mkOption;
+    options.primaryUuid = lib.mkOption;
+    
+    hjem.enable = lib.mkOption { default = true; } # todo: fix? necessary?
+  };
 }

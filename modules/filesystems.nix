@@ -1,7 +1,7 @@
 { den, ... }:
 {
-  den.aspects.filesystems.nixos = primaryUuid: bootUuid: {
-    boot.initrd.luks.devices."crypt".device = "/dev/disk/by-uuid/${primaryUuid}";
+  den.aspects.filesystems.nixos = { host, ... }: {
+    boot.initrd.luks.devices."crypt".device = "/dev/disk/by-uuid/${host.primaryUuid}";
 
     # We can access all of BTRFS' subvolumes from /pool
     fileSystems."/pool" = {
@@ -81,7 +81,7 @@
 
     # Our boot device
     fileSystems."/boot" = {
-      device = "/dev/disk/by-uuid/${bootUuid}";
+      device = "/dev/disk/by-uuid/${host.bootUuid}";
       fsType = "vfat";
       options = [ 
         "fmask=0177" # File mask:      Owner rw-, Group/Others ---
