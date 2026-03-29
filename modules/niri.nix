@@ -6,57 +6,42 @@
     den.aspects.greetd
   ];
 
-  den.aspects.niri = den.lib.parametric {
+  den.aspects.niri = { user, ... }: {
     nixos.programs.niri.enable = true;
 
-    includes = [
-      ({ user, ... }: {
-        hjem.${user.userName}.files = { # todo: not sure if this is necessary...
-          "niri/config".source = "./config/niri-config.kdl";
-          "niri/keybindings".source = "./config/niri-keybindings.kdl";
-        };
-      })
-    ];
+    hjem.${user.userName}.files = { # todo: not sure if this is necessary...
+      "niri/config".source = "./config/niri-config.kdl";
+      "niri/keybindings".source = "./config/niri-keybindings.kdl";
+    };
   };
 
-  den.aspects.noctalia = den.lib.parametric {
-    includes = [
-      ({ user, ... }: { # todo: using a lot of parametrics...
-        hjem.${user.userName} = { pkgs, ... }: {
-          packages = [ pkgs.noctalia-shell ];
+  den.aspects.noctalia = { user, pkgs, ... }: {
+    hjem.${user.userName} = {
+      packages = [ pkgs.noctalia-shell ];
 
-          systemd.services."noctalia-shell" = {
-            Unit = {
-              Description = "Start Noctalia after Niri";
-              After = "niri.service";
-              PartOf = "graphical-session.target";
-            };
-
-            Service = {
-              ExecStart = "${pkgs.noctalia-shell}/bin/noctalia";
-              Restart = "on-failure";
-            };
-
-            Install.WantedBy = [ "graphical-session.target" ];
-          };
+      systemd.services."noctalia-shell" = {
+        Unit = {
+          Description = "Start Noctalia after Niri";
+          After = "niri.service";
+          PartOf = "graphical-session.target";
         };
-      })
-    ];
+
+        Service = {
+          ExecStart = "${pkgs.noctalia-shell}/bin/noctalia";
+          Restart = "on-failure";
+        };
+
+        Install.WantedBy = [ "graphical-session.target" ];
+      };
+    };
   };
   
-  den.aspects.greetd = den.lib.parametric {
-    includes = [
-      ({ user, ... }: {
-        nixos.services.greetd.settings.default_session.user = "notARealUserName"; # todo: fix
-      })
-    ];
-
-    nixos = { pkgs, ... }: {
-      # services.xserver.enable = false; # Necessary?
-      services.greetd = {
-        enable = true;
-        settings.default_session.command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
-      };
+  den.aspects.greetd.nixos = { user, pkgs, ... }: {
+    # services.xserver.enable = false; # Necessary?
+    services.greetd = {
+      enable = true;
+      settings.default_session.command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
+      settings.default_session.user = "notARealUserName"; # todo: fix
     };  
   };
 }
