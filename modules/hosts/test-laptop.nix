@@ -3,8 +3,8 @@
   den.hosts.x86_64-linux.test-laptop.users.test = { };
 
   den.aspects.test-laptop = {
-    primaryUuid = "c5903369-fc45-44f8-b248-ef7260f24e92";
-    bootUuid = "5928-46CE";
+    options.primaryUuid = "c5903369-fc45-44f8-b248-ef7260f24e92";
+    options.bootUuid = "5928-46CE";
 
     classes = [ "hjem" ]; # todo: comment out one by one to see if necessary
     
