@@ -2,37 +2,37 @@
 {
   den.aspects.desktop.includes = [
     den.aspects.niri
-    den.aspects.noctalia
+    den.aspects.niri-config
+    den.aspects.noctalia-config
     den.aspects.greetd
   ];
 
   den.aspects.niri = { user, ... }: {
     nixos.programs.niri.enable = true;
+  };
 
-    hjem.${user.userName}.files = { # todo: not sure if this is necessary...
+  den.aspects.niri-config = { user, ... }: {
+    hjem.files = { # todo: not sure if this is necessary...
       "niri/config".source = "./config/niri-config.kdl";
       "niri/keybindings".source = "./config/niri-keybindings.kdl";
     };
   };
 
   den.aspects.noctalia = { user, pkgs, ... }: {
-    hjem.${user.userName} = {
-      packages = [ pkgs.noctalia-shell ];
-
-      systemd.services."noctalia-shell" = {
-        Unit = {
-          Description = "Start Noctalia after Niri";
-          After = "niri.service";
-          PartOf = "graphical-session.target";
-        };
-
-        Service = {
-          ExecStart = "${pkgs.noctalia-shell}/bin/noctalia";
-          Restart = "on-failure";
-        };
-
-        Install.WantedBy = [ "graphical-session.target" ];
+    hjem.packages = [ pkgs.noctalia-shell ];
+    hjem.systemd.services."noctalia-shell" = {
+      Unit = {
+        Description = "Start Noctalia after Niri";
+        After = "niri.service";
+        PartOf = "graphical-session.target";
       };
+
+      Service = {
+        ExecStart = "${pkgs.noctalia-shell}/bin/noctalia";
+        Restart = "on-failure";
+      };
+
+      Install.WantedBy = [ "graphical-session.target" ];
     };
   };
   
