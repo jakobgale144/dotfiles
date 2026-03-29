@@ -1,19 +1,25 @@
 { den, ... }:
 {
-  den.aspects.test = {
+  den.aspects.test = { user, ... }: {
     includes = [
-      den.aspects.desktop
-      den.aspects.packages
+       den._.primary-user
+      (den._.user-shell "fish")
+
+       den.aspects.desktop
+       den.aspects.packages
     ];
 
+    # classes = [ "hjem" ]; # todo: comment out one by one to see if necessary
+
     hjem = {
-     user = "test";
-     directory = "/home/test"; 
+     # enable = true; # see here too
+     user = user.userName;
+     directory = "/home/${user.userName}"; 
     };
 
     nixos = {
       users.users.root.initialPassword = "jkl";
-      users.users.test = {
+      users.users.${user.userName} = {
         initialPassword = "jkl";
         isNormalUser = true;
         extraGroups = [ "wheel" ];

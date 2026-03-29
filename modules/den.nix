@@ -6,10 +6,10 @@
     nixos.system.stateVersion = "25.11";
 
     includes = [
-      den.provides.define-user
-      den.provides.hostname
+      den._.define-user
+      den._.hostname
     ];
   };
 
-  den.schema.host.hjem.enable = true;
+  den.schema.host.hjem.enable = true; # todo: fix? necessary?
 }

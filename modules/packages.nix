@@ -1,13 +1,13 @@
 {
   den.aspects.packages.hjem = { user, pkgs, ... }: {
-    packages = [
+    ${user.userName}.packages = [
       pkgs.helix
       pkgs.wezterm
-      pkgs.git
+      # pkgs.git
       pkgs.zenbrowser
     ];
 
-    files = {
+    ${user.userName}.files = {
       "helix/config".source = "./config/helix.toml";
       "helix/languages".source = "./config/helix-languages.toml";
     };
