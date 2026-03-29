@@ -9,7 +9,7 @@
        den.aspects.packages
     ];
 
-    # classes = [ "hjem" ]; # todo: comment out one by one to see if necessary
+    classes = [ "hjem" ]; # todo: comment out one by one to see if necessary
 
     hjem = {
      # enable = true; # see here too
