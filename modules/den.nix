@@ -12,7 +12,7 @@
   };
 
   den.schema.host = { lib, ... }: {
-    options.bootUuid = lib.mkOption;
-    options.primaryUuid = lib.mkOption;
+    bootUuid = lib.mkOption;
+    primaryUuid = lib.mkOption;
   };
 }
