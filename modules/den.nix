@@ -12,7 +12,13 @@
   };
 
   den.schema.host = { lib, ... }: {
-    options.bootUuid = lib.mkOption;
-    options.primaryUuid = lib.mkOption;
+    options.bootUuid = lib.mkOption {
+      type = lib.types.str;
+      description = "UUID of the disk's boot partition";
+    };
+    options.primaryUuid = lib.mkOption {
+      type = lib.types.str;
+      description = "UUID of the disks's primary (LUKS) partition";
+    };
   };
 }
