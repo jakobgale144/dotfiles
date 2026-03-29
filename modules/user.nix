@@ -9,13 +9,12 @@
        den.aspects.packages
     ];
 
-    nixos = { ... }: {
-      users.users.root.initialPassword = "jkl";
-      users.users.${user.userName} = {
-        initialPassword = "jkl";
-        isNormalUser = true;
-        extraGroups = [ "wheel" ];
-      };
+    user = {
+      initialPassword = "jkl";
+      isNormalUser = true;
+      extraGroups = [ "wheel" ];
     };
+
+    nixos.users.users.root.initialPassword = "jkl";
   };
 }
