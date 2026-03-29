@@ -3,7 +3,7 @@
   den.aspects.desktop.includes = [
     den.aspects.niri
     den.aspects.niri-config
-    den.aspects.noctalia-config
+    den.aspects.noctalia
     den.aspects.greetd
   ];
 
