@@ -36,6 +36,7 @@
         #   mode = "0700";
         # }
       ];
+    };
 
     includes = [
       ({user, lib, pkgs, ...}: {
