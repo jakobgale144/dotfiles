@@ -1,108 +1,108 @@
 { inputs, den, ... }:
 {
-  den.aspects.preservation = { user, lib, pkgs, ... }: {
-    imports = [ inputs.preservation.nixosModules.default ];
+  den.aspects.preservation = { user, ... }: {
+    nixos = { lib, ... }: {
+      imports = [ inputs.preservation.nixosModules.default ];
 
-    preservation.enable = true;
-    preservation.preserveAt."/persist" = {
-      directories = [
-        "/etc/NetworkManager/system-connections"
-        "/etc/ssh"
-        "/etc/nix/inputs"
-        # "/etc/agenix"
-
-        "/var/log"
-
-        "/var/lib/nixos"
-        "/var/lib/systemd"
-        {
-          directory = "/var/lib/private";
-          mode = "0700";
-        }
-
-        # todo: virtualization
-
-        # "/var/lib/bluetooth"
-        "/var/lib/NetworkManager"
-      ];
-
-      files = [
-        {
-          file = "/etc/machine-id";
-          inInitrd = true;
-        }
-        # {
-        #   file = "/etc/shadow";
-        #   mode = "0700";
-        # }
-      ];
-      
-      users.${user.userName} = {
-        commonMountOptions = [
-          "x-gvfs-hide"
-        ];
+      preservation.enable = true;
+      preservation.preserveAt."/persist" = {
         directories = [
-          # XDG Home Directories
-          "Desktop"
-          "Documents"
-          "Downloads"
-          "Pictures"
-          "Videos"
+          "/etc/NetworkManager/system-connections"
+          "/etc/ssh"
+          "/etc/nix/inputs"
+          # "/etc/agenix"
 
-          ".cache"
+          "/var/log"
 
-          # Personal Directories
-          "Repos"
-          "Projects"
-          "NixOS"
-          "Temp"
-
-          # Nix / Home Manager Profiles
-          ".local/state/home-manager"
-          ".local/state/nix/profiles"
-          ".local/share/nix"
-
-          # todo: editors
-
-          # Language Package Managers
-          ".cargo"
-          # ".local/share/uv"
-
-          # Security
+          "/var/lib/nixos"
+          "/var/lib/systemd"
           {
-            directory = ".gnupg";
+            directory = "/var/lib/private";
             mode = "0700";
           }
+
+          # todo: virtualization
+
+          # "/var/lib/bluetooth"
+          "/var/lib/NetworkManager"
+        ];
+
+        files = [
           {
-            directory = ".ssh";
-            mode = "0700";
-          }
-          {
-            directory = ".pki"; # todo: look into this...
-            mode = "0700";
+            file = "/etc/machine-id";
+            inInitrd = true;
           }
           # {
-          #   directory = ".local/share/password-store";
+          #   file = "/etc/shadow";
           #   mode = "0700";
           # }
-
-          # Games
-          ".steam"
-          # ".config/lutris" # Can this config go anywhere else?
-          ".local/share/Steam"
-          ".local/share/lutris"
-
-          # Browsers
-          ".mozilla"
-
-          # CLI Data
-          ".local/share/atuin"
-          ".local/share/zoxide"
         ];
-      };
-    };  
+      
+        users.${user.userName} = {
+          commonMountOptions = [
+            "x-gvfs-hide"
+          ];
+          directories = [
+            # XDG Home Directories
+            "Desktop"
+            "Documents"
+            "Downloads"
+            "Pictures"
+            "Videos"
 
-    nixos = {
+            ".cache"
+
+            # Personal Directories
+            "Repos"
+            "Projects"
+            "NixOS"
+            "Temp"
+
+            # Nix / Home Manager Profiles
+            ".local/state/home-manager"
+            ".local/state/nix/profiles"
+            ".local/share/nix"
+
+            # todo: editors
+
+            # Language Package Managers
+            ".cargo"
+            # ".local/share/uv"
+
+            # Security
+            {
+              directory = ".gnupg";
+              mode = "0700";
+            }
+            {
+              directory = ".ssh";
+              mode = "0700";
+            }
+            {
+              directory = ".pki"; # todo: look into this...
+              mode = "0700";
+            }
+            # {
+            #   directory = ".local/share/password-store";
+            #   mode = "0700";
+            # }
+
+            # Games
+            ".steam"
+            # ".config/lutris" # Can this config go anywhere else?
+            ".local/share/Steam"
+            ".local/share/lutris"
+
+            # Browsers
+            ".mozilla"
+
+            # CLI Data
+            ".local/share/atuin"
+            ".local/share/zoxide"
+          ];
+        };
+      };  
+
       boot.initrd.systemd.enable = true;
       systemd.tmpfiles.settings.preservation =
         let
