@@ -15,6 +15,6 @@
     options.bootUuid = lib.mkOption;
     options.primaryUuid = lib.mkOption;
     
-    hjem.enable = lib.mkOption { default = true; } # todo: fix? necessary?
+    hjem.enable = lib.mkOption { default = true; }; # todo: fix? necessary?
   };
 }
