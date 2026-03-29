@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   den.aspects.system.nixos = { inputs, lib, pkgs, ... }:
   let
