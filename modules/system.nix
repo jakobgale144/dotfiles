@@ -16,7 +16,7 @@
     in {
       settings.experimental-features = "nix-command flakes"; # Enable Flakes and the new "nix" command
       settings.flake-registry = ""; # Disable global registry
-      nix.channel.enable = false; # Disable channels
+      channel.enable = false; # Disable channels
 
       # Make flake registry and Nix path match flake inputs
       registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
