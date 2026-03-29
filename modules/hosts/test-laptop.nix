@@ -17,7 +17,7 @@
     ];
   };
 
-  den.aspects.test-laptop._.hardware-config.nixos = { lib, config, ... }: {
+  den.aspects.test-laptop.provides.hardware-config.nixos = { lib, config, ... }: {
     boot.initrd.availableKernelModules = [ # todo: add more based on errors 
       "nvme"
       "ahci"
