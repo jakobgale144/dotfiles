@@ -1,5 +1,5 @@
 {
-  den.aspects.packages.hjem = { user, pkgs, ... }: {
+  den.aspects.packages.hjem = { pkgs, ... }: {
     packages = [
       pkgs.helix
       pkgs.wezterm

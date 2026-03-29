@@ -1,6 +1,6 @@
 { inputs, den, ... }:
 {
-  den.aspects.preservation = den.lib.parametric {
+  den.aspects.preservation = { user, ... }: {
     imports = [ inputs.preservation.nixosModules.default ];
 
     preservation.enable = true;

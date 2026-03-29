@@ -7,18 +7,18 @@
     den.aspects.greetd
   ];
 
-  den.aspects.niri = { user, ... }: {
+  den.aspects.niri = {
     nixos.programs.niri.enable = true;
   };
 
-  den.aspects.niri-config = { user, ... }: {
+  den.aspects.niri-config = {
     hjem.files = { # todo: not sure if this is necessary...
       "niri/config".source = "./config/niri-config.kdl";
       "niri/keybindings".source = "./config/niri-keybindings.kdl";
     };
   };
 
-  den.aspects.noctalia = { user, pkgs, ... }: {
+  den.aspects.noctalia = { pkgs, ... }: {
     hjem.packages = [ pkgs.noctalia-shell ];
     hjem.systemd.services."noctalia-shell" = {
       Unit = {
@@ -36,7 +36,7 @@
     };
   };
   
-  den.aspects.greetd.nixos = { user, pkgs, ... }: {
+  den.aspects.greetd.nixos = { pkgs, ... }: {
     # services.xserver.enable = false; # Necessary?
     services.greetd = {
       enable = true;
