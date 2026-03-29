@@ -36,12 +36,20 @@
     };
   };
   
-  den.aspects.greetd.nixos = { user, pkgs, ... }: {
-    # services.xserver.enable = false; # Necessary?
-    services.greetd = {
-      enable = true;
-      settings.default_session.command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
-      settings.default_session.user = user.userName;
-    };
-  };  
+  den.aspects.greetd = den.lib.parametric {
+    includes = [
+      ({ user, ... }: {
+        nixos.services.greetd.settings.default_session.user = user.userName;
+      })
+    ];
+
+    nixos = { user, pkgs, ... }: {
+      # services.xserver.enable = false; # Necessary?
+      services.greetd = {
+        enable = true;
+        settings.default_session.command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
+        settings.default_session.user = user.userName;
+      };
+    };  
+  };
 }
