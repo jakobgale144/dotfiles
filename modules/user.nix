@@ -12,7 +12,6 @@
     classes = [ "hjem" ]; # todo: comment out one by one to see if necessary
 
     hjem = {
-     enable = true; # see here too
      user = user.userName;
      directory = "/home/${user.userName}"; 
     };

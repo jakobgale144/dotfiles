@@ -16,5 +16,6 @@
     options.primaryUuid = lib.mkOption;
     
     hjem.enable = lib.mkDefault true; # todo: fix? necessary?
+    hjem.clobberByDefault = lib.mkDefault true;
   };
 }
