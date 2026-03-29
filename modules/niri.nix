@@ -32,12 +32,12 @@
     };
   };
   
-  den.aspects.greetd.nixos = { pkgs, ... }: {
+  den.aspects.greetd = { user, pkgs, ... }: {
     # services.xserver.enable = false; # Necessary?
     services.greetd = {
       enable = true;
       settings.default_session.command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
-      settings.default_session.user = "notARealUserName"; # todo: fix
+      settings.default_session.user = user.userName; # todo: fix
     };  
   };
 }
