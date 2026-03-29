@@ -1,25 +1,24 @@
 { den, ... }:
 {
-  den.hosts.x86_64-linux.test-laptop.users.test = { };
-
-  den.aspects.test-laptop = {
-    options.primaryUuid = "c5903369-fc45-44f8-b248-ef7260f24e92";
-    options.bootUuid = "5928-46CE";
+  den.hosts.x86_64-linux.test-laptop.users.test = {
+    primaryUuid = "c5903369-fc45-44f8-b248-ef7260f24e92";
+    bootUuid = "5928-46CE";
 
     classes = [ "hjem" ]; # todo: comment out one by one to see if necessary
     
     hjem.enable =  true; # todo: fix? necessary?
     hjem.clobberByDefault = true;
-
-    includes = [
-      den.aspects.boot
-      den.aspects.filesystems
-      den.aspects.preservation
-      den.aspects.system
-
-      den.aspects.test-laptop._.hardware-config
-    ];
   };
+
+
+  den.aspects.test-laptop.includes = [
+    den.aspects.boot
+    den.aspects.filesystems
+    den.aspects.preservation
+    den.aspects.system
+
+    den.aspects.test-laptop._.hardware-config
+  ];
 
   den.aspects.test-laptop._.hardware-config.nixos = { lib, config, ... }: {
     boot.initrd.availableKernelModules = [ # todo: add more based on errors 
