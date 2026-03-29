@@ -18,6 +18,7 @@
     den.aspects.filesystems
     den.aspects.preservation
     den.aspects.system
+    den.aspects.greetd
 
     den.aspects.test-laptop._.hardware-config
   ];
