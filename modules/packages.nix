@@ -6,6 +6,7 @@
       pkgs.git
       # pkgs.zen-browser
       pkgs.firefox
+      pkgs.github-cli
     ];
 
     files = {
