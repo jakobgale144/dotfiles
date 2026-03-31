@@ -1,4 +1,3 @@
-{ inputs, ... }:
 {
   den.aspects.packages.hjem = { pkgs, ... }: {
     packages = [
