@@ -5,6 +5,7 @@
        den._.primary-user
       (den._.user-shell "fish") # todo: why does nushell not work?
 
+       den.aspects.preserve-home
        den.aspects.desktop
        den.aspects.packages
     ];

@@ -3,7 +3,7 @@
   den.aspects.desktop.includes = [
     den.aspects.niri
     den.aspects.noctalia
-    # den.aspects.greetd
+    den.aspects.greetd
   ];
 
   den.aspects.niri = {
@@ -32,12 +32,14 @@
     };
   };
   
-  den.aspects.greetd.nixos = { pkgs, ... }: {
-    # services.xserver.enable = false; # Necessary?
-    services.greetd = {
-      enable = true;
-      settings.default_session.command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
-      settings.default_session.user = "notARealUserName"; # todo: fix
+  den.aspects.greetd = { user, ... }: {
+    nixos = { pkgs, ... }: {
+      # services.xserver.enable = false; # Necessary?
+      services.greetd = {
+        enable = true;
+        settings.default_session.command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
+        settings.default_session.user = user.userName; # todo: fix
+      };
     };  
   };
 }
