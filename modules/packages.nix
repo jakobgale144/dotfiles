@@ -10,8 +10,8 @@
     ];
 
     files = {
-      "helix/config".source = inputs.self + /config/helix.toml;
-      "helix/languages".source = inputs.self + /config/helix-languages.toml;
+      "helix/config".source = ./modules/config/helix.toml;
+      "helix/languages".source = ./modules/config/helix-languages.toml;
     };
   };
 }
