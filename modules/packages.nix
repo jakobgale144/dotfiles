@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   den.aspects.packages.hjem = { pkgs, ... }: {
     packages = [
@@ -9,8 +10,8 @@
     ];
 
     files = {
-      "helix/config".source = ./config/helix.toml;
-      "helix/languages".source = ./config/helix-languages.toml;
+      "helix/config".source = inputs.self + /config/helix.toml;
+      "helix/languages".source = inputs.self + /config/helix-languages.toml;
     };
   };
 }
