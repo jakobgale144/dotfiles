@@ -9,8 +9,8 @@
   den.aspects.niri = {
     nixos = { ... }: { programs.niri.enable = true; };
     hjem.files = { # todo: not sure if this is necessary...
-      "niri/config".source = "./config/niri-config.kdl";
-      "niri/keybindings".source = "./config/niri-keybindings.kdl";
+      "niri/config".source = ./config/niri-config.kdl;
+      "niri/keybindings".source = ./config/niri-keybindings.kdl;
     };
   };
 
