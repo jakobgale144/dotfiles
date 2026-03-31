@@ -9,8 +9,8 @@
     ];
 
     files = {
-      "helix/config".source = ./config/helix.toml;
-      "helix/languages".source = ./config/helix-languages.toml;
+      ".config/helix/config.toml".source = ./config/helix.toml;
+      ".config/helix/languages.toml".source = ./config/helix-languages.toml;
     };
   };
 }
