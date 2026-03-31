@@ -7,9 +7,9 @@
     networking.networkmanager.enable = true;
     time.timeZone = "America/New_York";
 
-    environment.systemPackages = [
-      pkgs.git # todo: comment all this out when done testing
-    ];
+    # environment.systemPackages = [
+    #   pkgs.git # todo: comment all this out when done testing
+    # ];
 
     nix =
     let

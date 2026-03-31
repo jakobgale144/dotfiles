@@ -3,8 +3,9 @@
     packages = [
       pkgs.helix
       pkgs.wezterm
-      # pkgs.git
-      pkgs.zen-browser
+      pkgs.git
+      # pkgs.zen-browser
+      pkgs.firefox
     ];
 
     files = {
