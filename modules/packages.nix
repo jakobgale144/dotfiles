@@ -4,7 +4,7 @@
       pkgs.helix
       pkgs.wezterm
       # pkgs.git
-      pkgs.zenbrowser
+      pkgs.zen-browser
     ];
 
     files = {
