@@ -16,18 +16,11 @@
 
   den.aspects.noctalia.hjem = {
     systemd.services."noctalia-shell" = {
-      unit = {
-        description = "Start Noctalia after Niri";
-        after = "niri.service";
-        partOf = "graphical-session.target";
-      };
-
-      service = {
-        execStart = "${inputs.noctalia}/bin/noctalia";
-        restart = "on-failure";
-      };
-
-      install.wantedBy = [ "graphical-session.target" ];
+      description = "Start Noctalia after Niri";
+      after = "niri.service";
+      partOf = "graphical-session.target";
+      postStart = "${inputs.noctalia}/bin/noctalia";
+      wantedBy = [ "graphical-session.target" ];
     };
   };
 
