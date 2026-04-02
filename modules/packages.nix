@@ -1,7 +1,7 @@
 { den, ... }:
 {
-  den.aspects.packages = { user, pkgs, ... }: {
-    hjem = { pkgs, ... }: {
+  den.aspects.packages = { user, ... }: {
+    hjem = { pkgs, lib, ... }: {
       packages = [
         # pkgs.yazelix
         pkgs.helix
@@ -17,13 +17,16 @@
         ".config/helix/config.toml".source = ./config/helix.toml;
         ".config/helix/languages.toml".source = ./config/helix-languages.toml;
       };
-
-      environment.sessionVariables = {
-        EDITOR = "hx";
-        VISUAL = "hx";
-      };
     };
 
-    user.shell = pkgs.nushell;
+    nixos = { pkgs, ... }: {
+      users.users.${user.userName} = {
+        shell = pkgs.nushell;
+        environment.sessionVariables = {
+          EDITOR = lib.mkDefault "hx";
+          VISUAL = lib.mkDefault "hx";
+        };
+      };
+    };
   };
 }
