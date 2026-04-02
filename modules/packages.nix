@@ -1,7 +1,7 @@
 { den, ... }:
 {
   den.aspects.packages = { user, ... }: {
-    hjem = { pkgs, lib, ... }: {
+    hjem = { pkgs, ... }: {
       packages = [
         # pkgs.yazelix
         pkgs.helix
@@ -23,8 +23,8 @@
       users.users.${user.userName} = {
         shell = pkgs.nushell;
         environment.sessionVariables = {
-          EDITOR = lib.mkDefault "hx";
-          VISUAL = lib.mkDefault "hx";
+          EDITOR = "hx";
+          VISUAL = "hx";
         };
       };
     };
