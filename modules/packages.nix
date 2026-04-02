@@ -21,6 +21,7 @@
       environment.sessionVariables = {
         EDITOR = "hx";
         VISUAL = "hx";
+        FOO = "bar";
       };
     };
 
