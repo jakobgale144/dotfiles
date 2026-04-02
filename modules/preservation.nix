@@ -1,10 +1,10 @@
 { inputs, den, ... }:
 {
-  den.aspects.preserve-system = {
+  den.aspects.preserve-system.nixos = {
     imports = [ inputs.preservation.nixosModules.default ];
 
-    inputs.preservation.enable = true;
-    inputs.preservation.preserveAt."/persist" = {
+    preservation.enable = true;
+    preservation.preserveAt."/persist" = {
       directories = [
         "/etc/NetworkManager/system-connections"
         "/etc/ssh"
@@ -38,10 +38,10 @@
       ];
     };
 
-    nixos.boot.initrd.systemd.enable = true;
-    nixos.systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
+    boot.initrd.systemd.enable = true;
+    systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
 
-    nixos.systemd.services.systemd-machine-id-commit = {
+    systemd.services.systemd-machine-id-commit = {
       unitConfig.ConditionPathIsMountPoint = [
         ""
         "/persist/etc/machine-id"
@@ -54,78 +54,78 @@
 
     # The below fixes an issue on first bootup where systemd attempts to look for
     # the defined groups and users before those users/groups have been created.
-    nixos.systemd.services."systemd-tmpfiles-setup".after = [ "systemd-sysusers.service" ];
+    systemd.services."systemd-tmpfiles-setup".after = [ "systemd-sysusers.service" ];
   };
-
+      
   den.aspects.preserve-home = { user, ... }: {
-    imports = [ inputs.preservation.nixosModules.default ]; # todo: second call: necessary?
-
-    inputs.preservation.enable = true; # todo: also necessary?
-    inputs.preservation.preserveAt."/persist".users.${user.userName} = {
-      commonMountOptions = [
-        "x-gvfs-hide"
-      ];
-      directories = [
-        # XDG Home Directories
-        "Desktop"
-        "Documents"
-        "Downloads"
-        "Pictures"
-        "Videos"
-
-        ".cache"
-
-        # Personal Directories
-        "Repos"
-        "Projects"
-        "NixOS"
-        "Temp"
-
-        # Nix / Home Manager Profiles
-        ".local/state/home-manager"
-        ".local/state/nix/profiles"
-        ".local/share/nix"
-
-        # todo: editors
-
-        # Language Package Managers
-        ".cargo"
-        # ".local/share/uv"
-
-        # Security
-        {
-          directory = ".gnupg";
-          mode = "0700";
-        }
-        {
-          directory = ".ssh";
-          mode = "0700";
-        }
-        {
-          directory = ".pki"; # todo: look into this...
-          mode = "0700";
-        }
-        # {
-        #   directory = ".local/share/password-store";
-        #   mode = "0700";
-        # }
-
-        # Games
-        ".steam"
-        # ".config/lutris" # Can this config go anywhere else?
-        ".local/share/Steam"
-        ".local/share/lutris"
-
-        # Browsers
-        ".mozilla"
-
-        # CLI Data
-        ".local/share/atuin"
-        ".local/share/zoxide"
-      ];
-    };
-
     nixos = { lib, ... }: {
+      imports = [ inputs.preservation.nixosModules.default ]; # todo: second call: necessary?
+
+      preservation.enable = true; # todo: also necessary?
+      preservation.preserveAt."/persist".users.${user.userName} = {
+        commonMountOptions = [
+          "x-gvfs-hide"
+        ];
+        directories = [
+          # XDG Home Directories
+          "Desktop"
+          "Documents"
+          "Downloads"
+          "Pictures"
+          "Videos"
+
+          ".cache"
+
+          # Personal Directories
+          "Repos"
+          "Projects"
+          "NixOS"
+          "Temp"
+
+          # Nix / Home Manager Profiles
+          ".local/state/home-manager"
+          ".local/state/nix/profiles"
+          ".local/share/nix"
+
+          # todo: editors
+
+          # Language Package Managers
+          ".cargo"
+          # ".local/share/uv"
+
+          # Security
+          {
+            directory = ".gnupg";
+            mode = "0700";
+          }
+          {
+            directory = ".ssh";
+            mode = "0700";
+          }
+          {
+            directory = ".pki"; # todo: look into this...
+            mode = "0700";
+          }
+          # {
+          #   directory = ".local/share/password-store";
+          #   mode = "0700";
+          # }
+
+          # Games
+          ".steam"
+          # ".config/lutris" # Can this config go anywhere else?
+          ".local/share/Steam"
+          ".local/share/lutris"
+
+          # Browsers
+          ".mozilla"
+
+          # CLI Data
+          ".local/share/atuin"
+          ".local/share/zoxide"
+        ];
+      };
+
       systemd.tmpfiles.settings.preservation = # todo: needed for both modules?
       let
         permission = {

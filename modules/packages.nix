@@ -1,14 +1,14 @@
 { den, ... }:
 {
-  den.aspects.packages = { pkgs, ... }: {
+  den.aspects.packages = {
     includes = [
-      (den._.user-shell "nushell")
+      ( den._.user-shell "nushell" )
     ];
 
-    hjem = {
+    hjem = { pkgs, ...}: {
       packages = [
-        pkgs.yazelix
-        # pkgs.helix
+        # pkgs.yazelix
+        pkgs.helix
         pkgs.wezterm
         pkgs.git
         # pkgs.zen-browser
