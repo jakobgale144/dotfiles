@@ -21,15 +21,19 @@
       environment.sessionVariables = {
         EDITOR = "hx";
         VISUAL = "hx";
-        # FOO = "bar";
+        FOO = "bar";
+      };
+
+      user = { pkgs, ... }: {
+        shell = pkgs.nushell;
       };
     };
 
     nixos = { pkgs, ... }: {
-      users.users.${user.userName} = {
-        shell = pkgs.nushell;
-      };
-      environment.sessionVariables.FOO = "bar";
+      # users.users.${user.userName} = {
+      #   shell = pkgs.nushell;
+      # };
+      # environment.sessionVariables.FOO = "bar";
     };
   };
 }
