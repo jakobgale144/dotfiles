@@ -25,8 +25,10 @@
     };
 
     nixos = { pkgs, ... }: {
-      users.users.${user.userName}.shell = pkgs.nushell;
-      users.users.${user.userName}.editor = pkgs.helix;
+      users.users.${user.userName} = {
+        shell = pkgs.nushell;
+        editor = pkgs.helix;
+      };
     };
   };
 }
