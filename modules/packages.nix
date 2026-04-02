@@ -17,13 +17,14 @@
         ".config/helix/config.toml".source = ./config/helix.toml;
         ".config/helix/languages.toml".source = ./config/helix-languages.toml;
       };
+
+      environment.sessionVariables = {
+        EDITOR = "hx";
+        VISUAL = "hx";
+      };
     };
 
-    nixos = { pkgs, lib, ... }: {
-      environment.sessionVariables = {
-        EDITOR = lib.mkForce "hx";
-        VISUAL = lib.mkForce "hx";
-      };
+    nixos = { pkgs, ... }: {
       users.users.${user.userName} = {
         shell = pkgs.nushell;
       };
