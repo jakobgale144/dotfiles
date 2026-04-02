@@ -23,5 +23,11 @@
 
     # Preservation
     preservation.url = "github:nix-community/preservation";
+
+    # Noctalia
+    noctalia.url = "github:noctalia-dev/noctalia-shell";
+
+    # Yazelix
+    yazelix.url = "github:luccahuguet/yazelix";
   };
 }

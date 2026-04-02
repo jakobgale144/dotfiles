@@ -1,4 +1,4 @@
-{ den, ... }:
+{ den, inputs, ... }:
 {
   den.aspects.desktop.includes = [
     den.aspects.niri
@@ -14,8 +14,7 @@
     };
   };
 
-  den.aspects.noctalia.hjem = { pkgs, ... }: {
-    packages = [ pkgs.noctalia-shell ];
+  den.aspects.noctalia.hjem = {
     systemd.services."noctalia-shell" = {
       Unit = {
         Description = "Start Noctalia after Niri";
@@ -24,7 +23,7 @@
       };
 
       Service = {
-        ExecStart = "${pkgs.noctalia-shell}/bin/noctalia";
+        ExecStart = "${inputs.noctalia}/bin/noctalia";
         Restart = "on-failure";
       };
 
