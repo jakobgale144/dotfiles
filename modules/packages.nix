@@ -1,6 +1,6 @@
 { den, ... }:
 {
-  den.aspects.packages = { user, ... }: {
+  den.aspects.packages = { user, pkgs, ... }: {
     hjem = { pkgs, ... }: {
       packages = [
         # pkgs.yazelix
@@ -24,6 +24,6 @@
       };
     };
 
-    user.shell = { pkgs, ... }: { pkgs.nushell };
+    user.shell = pkgs.nushell;
   };
 }
