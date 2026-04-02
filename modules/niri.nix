@@ -27,7 +27,7 @@
         Restart = "on-failure";
       };
 
-      Install.WantedBy = [ "graphical-session.target" ];
+      WantedBy = [ "graphical-session.target" ];
     };
   };
 

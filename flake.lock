@@ -100,6 +100,80 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1775036866,
+        "narHash": "sha256-ZojAnPuCdy657PbTq5V0Y+AHKhZAIwSIT2cb8UgAz/U=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "6201e203d09599479a3b3450ed24fa81537ebc4e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1774709303,
+        "narHash": "sha256-D3Q07BbIA2KnTcSXIqqu9P586uWxN74zNoCH3h2ESHg=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "8110df5ad7abf5d4c0f6fb0f8f978390e77f9685",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3",
+        "noctalia-qs": "noctalia-qs"
+      },
+      "locked": {
+        "lastModified": 1775092367,
+        "narHash": "sha256-E4I6ZuZztZ0Q9hNKfVnGaKNiYuiO4NBPcRonKJhS5Ug=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "rev": "75d67b32169738333b6647ab6a2e110587a0ff66",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "type": "github"
+      }
+    },
+    "noctalia-qs": {
+      "inputs": {
+        "nixpkgs": [
+          "noctalia",
+          "nixpkgs"
+        ],
+        "systems": "systems_2",
+        "treefmt-nix": "treefmt-nix"
+      },
+      "locked": {
+        "lastModified": 1775008123,
+        "narHash": "sha256-zsd/kbsgfX2YQAlbao40JxyeVDwsUmBGyUDZc/Vo1C4=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-qs",
+        "rev": "b87f41771c050d3c101d1528532de53293cba6da",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia-qs",
+        "type": "github"
+      }
+    },
     "preservation": {
       "locked": {
         "lastModified": 1757436102,
@@ -121,7 +195,9 @@
         "hjem": "hjem",
         "import-tree": "import-tree",
         "nixpkgs": "nixpkgs_2",
-        "preservation": "preservation"
+        "noctalia": "noctalia",
+        "preservation": "preservation",
+        "yazelix": "yazelix"
       }
     },
     "rust-overlay": {
@@ -181,6 +257,61 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_2": {
+      "locked": {
+        "lastModified": 1689347949,
+        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "treefmt-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "noctalia",
+          "noctalia-qs",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1773297127,
+        "narHash": "sha256-6E/yhXP7Oy/NbXtf1ktzmU8SdVqJQ09HC/48ebEGBpk=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "71b125cd05fbfd78cab3e070b73544abe24c5016",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "yazelix": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1775101337,
+        "narHash": "sha256-yxhL9JQNIFG3XqCYqtu1SLHLAfvn/AFBLX8UUdNpiwE=",
+        "owner": "luccahuguet",
+        "repo": "yazelix",
+        "rev": "b07deae45c8bef6c65bb25a5bfd97f8073d28ee8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "luccahuguet",
+        "repo": "yazelix",
         "type": "github"
       }
     }
