@@ -14,9 +14,9 @@
     };
   };
 
-  den.aspects.noctalia = { pkgs, ... }: {
-    hjem.packages = [ pkgs.noctalia-shell ];
-    hjem.systemd.services."noctalia-shell" = {
+  den.aspects.noctalia.hjem = { pkgs, ... }: {
+    packages = [ pkgs.noctalia-shell ];
+    systemd.services."noctalia-shell" = {
       Unit = {
         Description = "Start Noctalia after Niri";
         After = "niri.service";
@@ -31,7 +31,7 @@
       Install.WantedBy = [ "graphical-session.target" ];
     };
   };
-  
+
   den.aspects.greetd = { user, ... }: {
     nixos = { pkgs, ... }: {
       # services.xserver.enable = false; # Necessary?
@@ -40,6 +40,6 @@
         settings.default_session.command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
         settings.default_session.user = user.userName; # todo: fix
       };
-    };  
+    };
   };
 }
