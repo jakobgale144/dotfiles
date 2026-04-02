@@ -21,7 +21,7 @@
       environment.sessionVariables = {
         EDITOR = "hx";
         VISUAL = "hx";
-        FOO = "bar";
+        # FOO = "bar";
       };
     };
 
@@ -29,6 +29,7 @@
       users.users.${user.userName} = {
         shell = pkgs.nushell;
       };
+      environment.sessionVariables.FOO = "bar";
     };
   };
 }
