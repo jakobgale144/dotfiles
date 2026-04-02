@@ -19,10 +19,10 @@
       };
     };
 
-    nixos = { pkgs, ... }: {
+    nixos = { pkgs, lib, ... }: {
       environment.sessionVariables = {
-        EDITOR = "hx";
-        VISUAL = "hx";
+        EDITOR = lib.mkForce "hx";
+        VISUAL = lib.mkForce "hx";
       };
       users.users.${user.userName} = {
         shell = pkgs.nushell;
