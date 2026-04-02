@@ -9,10 +9,12 @@
        den.aspects.packages
     ];
 
-    user = {
+    user = { pkgs, ... }: {
       initialPassword = "jkl";
       isNormalUser = true;
       extraGroups = [ "wheel" ];
+
+      # shell = pkgs.nushell;
     };
 
     nixos.users.users.root.initialPassword = "jkl";
