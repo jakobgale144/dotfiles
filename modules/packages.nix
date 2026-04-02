@@ -20,12 +20,12 @@
     };
 
     nixos = { pkgs, ... }: {
+      environment.sessionVariables = {
+        EDITOR = "hx";
+        VISUAL = "hx";
+      };
       users.users.${user.userName} = {
         shell = pkgs.nushell;
-        environment.sessionVariables = {
-          EDITOR = "hx";
-          VISUAL = "hx";
-        };
       };
     };
   };
