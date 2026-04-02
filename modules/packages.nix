@@ -24,6 +24,6 @@
       };
     };
 
-    user.shell = pkgs.nushell;
+    user.shell = { pkgs, ... }: { pkgs.nushell; };
   };
 }
