@@ -3,7 +3,6 @@
   den.aspects.test = { user, ... }: {
     includes = [
        den._.primary-user
-      (den._.user-shell "fish") # todo: why does nushell not work?
 
        den.aspects.preserve-home
        den.aspects.desktop
