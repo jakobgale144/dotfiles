@@ -25,6 +25,7 @@
       partOf = [ "graphical-session.target" ];
       script = "${pkgs-unstable.noctalia-shell}/bin/noctalia-shell";
       wantedBy = [ "graphical-session.target" ];
+      environment.PATH = "/run/current-system/sw/bin"
     };
   };
 
