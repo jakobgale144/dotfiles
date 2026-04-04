@@ -8,13 +8,15 @@
       den._.hostname
     ];
 
-    nixos.system.stateVersion = "25.11";
+    nixos = {
+      system.stateVersion = "25.11";
 
       # Create a pkgs-unstable module to easily access unstable nixpkgs
-    hjem.specialArgs = {
-      pkgs-unstable = import inputs.nixpkgs-unstable {
-        system = host.system;
-        config.allowUnfree = true;
+      hjem.specialArgs = {
+        pkgs-unstable = import inputs.nixpkgs-unstable {
+          system = host.system;
+          config.allowUnfree = true;
+        };
       };
     };
   };
