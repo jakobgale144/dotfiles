@@ -14,19 +14,16 @@
     };
   };
 
-  den.aspects.noctalia.hjem = { inputs', ... }:
-  let
-    noctaliaPkg = inputs'.nixpkgs-unstable.legacyPackages.noctalia-shell;
-  in {
+  den.aspects.noctalia.hjem = { pkgs-unstable, ... }: {
     packages = [
-      noctaliaPkg
+      pkgs-unstable.noctalia-shell
     ];
 
     systemd.services."noctalia-shell" = {
       description = "Start Noctalia after Niri";
       after = [ "niri.service" ];
       partOf = [ "graphical-session.target" ];
-      script = "${noctaliaPkg}/bin/noctalia-shell";
+      script = "${pkgs-unstable.noctalia-shell}/bin/noctalia-shell";
       wantedBy = [ "graphical-session.target" ];
     };
   };
