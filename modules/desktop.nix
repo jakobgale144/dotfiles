@@ -14,22 +14,31 @@
     };
   };
 
-  den.aspects.noctalia.hjem = { pkgs-unstable, lib, ... }: {
-    packages = [
-      pkgs-unstable.noctalia-shell
-    ];
+  den.aspects.noctalia = {
+    hjem = { pkgs-unstable, lib, ... }: {
+      packages = [
+        pkgs-unstable.noctalia-shell
+      ];
 
-    systemd.services."noctalia-shell" = {
-      description = "Start Noctalia after Niri";
-      after = [ "niri.service" ];
-      partOf = [ "graphical-session.target" ];
-      script = "${pkgs-unstable.noctalia-shell}/bin/noctalia-shell";
-      wantedBy = [ "graphical-session.target" ];
-      environment.PATH = lib.mkForce "/run/current-system/sw/bin";
+      systemd.services."noctalia-shell" = {
+        description = "Start Noctalia after Niri";
+        after = [ "niri.service" ];
+        partOf = [ "graphical-session.target" ];
+        script = "${pkgs-unstable.noctalia-shell}/bin/noctalia-shell";
+        wantedBy = [ "graphical-session.target" ];
+        environment.PATH = lib.mkForce "/run/current-system/sw/bin";
+      };
+
+      files = {
+        ".config/noctalia".source = ./config/noctalia;
+      };
     };
 
-    files = {
-      ".config/noctalia".source = ./config/noctalia;
+    nixos = { # For Noctalia features
+      networking.networkmanager.enable = true;
+      hardware.bluetooth.enable = true;
+      services.tuned.enable = true;
+      services.upower.enable = true;
     };
   };
 
