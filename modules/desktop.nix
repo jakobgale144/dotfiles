@@ -14,8 +14,7 @@
     };
   };
 
-  den.aspects.noctalia = { host, ... }: {
-    hjem = { pkgs-unstable, ... }: {
+  den.aspects.noctalia.hjem = { pkgs-unstable, ... }: {
     packages = [
       pkgs-unstable.noctalia-shell
     ];
@@ -26,7 +25,6 @@
       partOf = [ "graphical-session.target" ];
       script = "${pkgs-unstable.noctalia-shell}/bin/noctalia-shell";
       wantedBy = [ "graphical-session.target" ];
-    };
     };
   };
 
