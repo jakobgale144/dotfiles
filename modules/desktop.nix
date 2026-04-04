@@ -19,10 +19,10 @@
       inputs.noctalia.packages.${host.system}.default
     ];
 
-    nixos.nix.settings = {
-      extra-substituters = [ "https://noctalia.cachix.org" ];
-      extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzWPp3dkU4=" ];
-    };
+    # nixos.nix.settings = {
+    #   extra-substituters = [ "https://noctalia.cachix.org" ];
+    #   extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzWPp3dkU4=" ];
+    # }; # if you want to use cached binaries
 
     hjem.systemd.services."noctalia-shell" = {
       description = "Start Noctalia after Niri";

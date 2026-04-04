@@ -183,8 +183,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "noctalia": "noctalia",
-        "preservation": "preservation",
-        "yazelix": "yazelix"
+        "preservation": "preservation"
       }
     },
     "rust-overlay": {
@@ -281,26 +280,6 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "yazelix": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1775101337,
-        "narHash": "sha256-yxhL9JQNIFG3XqCYqtu1SLHLAfvn/AFBLX8UUdNpiwE=",
-        "owner": "luccahuguet",
-        "repo": "yazelix",
-        "rev": "b07deae45c8bef6c65bb25a5bfd97f8073d28ee8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "luccahuguet",
-        "repo": "yazelix",
         "type": "github"
       }
     }
