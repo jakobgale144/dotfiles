@@ -23,6 +23,7 @@
       # noctaliaPkg
       pkgs.noctalia-shell
     ];
+    };
 
     # nixos.nix.settings = {
     #   extra-substituters = [ "https://noctalia.cachix.org" ];
