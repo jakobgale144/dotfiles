@@ -4,13 +4,14 @@
     hjem = { pkgs, ... }: {
       packages = [
         # pkgs.yazelix
-        pkgs.helix
+        # pkgs.helix # included with yazelix's flake
         pkgs.nushell
         pkgs.wezterm
         pkgs.git
         # pkgs.zen-browser
         pkgs.firefox
         pkgs.github-cli
+        pkgs.obsidian
       ];
 
       files = {
