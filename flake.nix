@@ -25,8 +25,8 @@
     preservation.url = "github:nix-community/preservation";
 
     # Noctalia
-    noctalia.url = "github:noctalia-dev/noctalia-shell";
-    noctalia.inputs.nixpkgs.follows = "nixpkgs";
+    # noctalia.url = "github:noctalia-dev/noctalia-shell";
+    # noctalia.inputs.nixpkgs.follows = "nixpkgs";
 
     # Yazelix
     # yazelix.url = "github:luccahuguet/yazelix";

@@ -18,12 +18,10 @@
   let
     # noctaliaPkg = inputs.noctalia.packages.${host.system}.default;
   in { host, ... }: {
-    hjem = {pkgs, ...}: {
     packages = [
       # noctaliaPkg
-      inputs.nixpkgs.pkgs.noctalia-shell
+      inputs.nixpkgs-unstable.noctalia-shell
     ];
-    };
 
     # nixos.nix.settings = {
     #   extra-substituters = [ "https://noctalia.cachix.org" ];
