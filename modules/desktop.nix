@@ -14,10 +14,16 @@
     };
   };
 
-  den.aspects.noctalia = { host, ... }: {
-    hjem.packages = [
-      inputs.noctalia.packages.${host.system}.default
+  den.aspects.noctalia =
+  let
+    # noctaliaPkg = inputs.noctalia.packages.${host.system}.default;
+  in { host, ... }: {
+    hjem = {pkgs, ...}: {
+    packages = [
+      # noctaliaPkg
+      pkgs.noctalia-shell
     ];
+    };
 
     # nixos.nix.settings = {
     #   extra-substituters = [ "https://noctalia.cachix.org" ];
@@ -28,7 +34,7 @@
       description = "Start Noctalia after Niri";
       after = [ "niri.service" ];
       partOf = [ "graphical-session.target" ];
-      script = "${inputs.noctalia.packages.${host.system}.default}/bin/noctalia-shell";
+      script = "${noctaliaPkg}/bin/noctalia-shell";
       wantedBy = [ "graphical-session.target" ];
     };
   };
