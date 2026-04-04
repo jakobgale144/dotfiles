@@ -15,7 +15,6 @@
 
     # Import Tree
     import-tree.url = "github:vic/import-tree";
-    import-tree.inputs.nixpkgs.follows = "nixpkgs";
     # Den
     den.url = "github:vic/den";
 
@@ -24,7 +23,6 @@
 
     # Preservation
     preservation.url = "github:nix-community/preservation";
-    preservation.inputs.nixpkgs.follows = "nixpkgs";
 
     # Noctalia
     noctalia.url = "github:noctalia-dev/noctalia-shell";
