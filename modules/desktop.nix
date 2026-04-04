@@ -27,6 +27,10 @@
       wantedBy = [ "graphical-session.target" ];
       environment.PATH = lib.mkForce "/run/current-system/sw/bin";
     };
+
+    files = {
+      ".config/noctalia/".source = ./config/noctalia;
+    };
   };
 
   den.aspects.greetd = { user, ... }: {
