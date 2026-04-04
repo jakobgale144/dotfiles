@@ -14,7 +14,7 @@
     };
   };
 
-  den.aspects.noctalia = { inputs', ... }:
+  den.aspects.noctalia = { ... }:
   let
     noctaliaPkg = inputs'.nixpkgs-unstable.legacyPackages.noctalia-shell;
   in {
