@@ -21,7 +21,7 @@
     hjem = {pkgs, ...}: {
     packages = [
       # noctaliaPkg
-      inputs.nixpkgs-unstable.noctalia-shell
+      inputs.nixpkgs.pkgs.noctalia-shell
     ];
     };
 
