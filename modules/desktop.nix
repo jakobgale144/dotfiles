@@ -28,7 +28,7 @@
       description = "Start Noctalia after Niri";
       after = [ "niri.service" ];
       partOf = [ "graphical-session.target" ];
-      script = "${inputs.noctalia}/bin/noctalia";
+      script = "${inputs.noctalia.packages.${host.system}.default}/bin/noctalia-shell";
       wantedBy = [ "graphical-session.target" ];
     };
   };
