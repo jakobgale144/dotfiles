@@ -3,14 +3,15 @@
   imports = [ inputs.den.flakeModule ];
 
   den.default = {
-    nixos.system.stateVersion = "25.11";
-
     includes = [
       den._.define-user
       den._.hostname
     ];
 
-    nixos = { pkgs, ... }: { # Create a pkgs-unstable module to easily access unstable nixpkgs
+    nixos = { pkgs, ... }: {
+      nixos.system.stateVersion = "25.11";
+
+      # Create a pkgs-unstable module to easily access unstable nixpkgs
       _module.args.pkgs-unstable = import inputs.nixpkgs-unstable {
         system = pkgs.system;
         config.allowUnfree = true;
