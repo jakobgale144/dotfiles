@@ -23,20 +23,19 @@
       # noctaliaPkg
       pkgs.noctalia-shell
     ];
-    };
 
     # nixos.nix.settings = {
     #   extra-substituters = [ "https://noctalia.cachix.org" ];
     #   extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzWPp3dkU4=" ];
     # }; # if you want to use cached binaries
 
-    hjem.systemd.services."noctalia-shell" = {
-      description = "Start Noctalia after Niri";
-      after = [ "niri.service" ];
-      partOf = [ "graphical-session.target" ];
-      script = "${noctaliaPkg}/bin/noctalia-shell";
-      wantedBy = [ "graphical-session.target" ];
-    };
+    # hjem.systemd.services."noctalia-shell" = {
+    #   description = "Start Noctalia after Niri";
+    #   after = [ "niri.service" ];
+    #   partOf = [ "graphical-session.target" ];
+    #   script = "${noctaliaPkg}/bin/noctalia-shell";
+    #   wantedBy = [ "graphical-session.target" ];
+    # };
   };
 
   den.aspects.greetd = { user, ... }: {
