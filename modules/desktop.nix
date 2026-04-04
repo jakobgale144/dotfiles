@@ -14,16 +14,16 @@
     };
   };
 
-  den.aspects.noctalia.hjem = { pkgs-unstable, ... }: {
-    packages = [
-      pkgs-unstable.noctalia-shell
+  den.aspects.noctalia = { host, ... }: {
+    hjem.packages = [
+      host.pkgs-unstable.noctalia-shell
     ];
 
-    systemd.services."noctalia-shell" = {
+    hjem.systemd.services."noctalia-shell" = {
       description = "Start Noctalia after Niri";
       after = [ "niri.service" ];
       partOf = [ "graphical-session.target" ];
-      script = "${pkgs-unstable.noctalia-shell}/bin/noctalia-shell";
+      script = "${host.pkgs-unstable.noctalia-shell}/bin/noctalia-shell";
       wantedBy = [ "graphical-session.target" ];
     };
   };
