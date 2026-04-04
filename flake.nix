@@ -18,11 +18,9 @@
     import-tree.inputs.nixpkgs.follows = "nixpkgs";
     # Den
     den.url = "github:vic/den";
-    den.inputs.nixpkgs.follows = "nixpkgs";
 
     # Hjem
     hjem.url = "github:feel-co/hjem";
-    hjem.inputs.nixpkgs.follows = "nixpkgs";
 
     # Preservation
     preservation.url = "github:nix-community/preservation";
