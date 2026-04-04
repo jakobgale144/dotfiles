@@ -8,6 +8,7 @@
     includes = [
       den._.define-user
       den._.hostname
+      den._.inputs'
     ];
   };
 

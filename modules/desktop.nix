@@ -16,7 +16,7 @@
 
   den.aspects.noctalia.hjem =
   let
-    noctaliaPkg = inputs.nixpkgs-unstable.noctalia-shell;
+    noctaliaPkg = inputs'.nixpkgs-unstable.legacyPackages.noctalia-shell;
   in {
     packages = [
       noctaliaPkg
