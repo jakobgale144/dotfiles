@@ -9,7 +9,7 @@
     ];
 
     nixos = { pkgs, ... }: {
-      nixos.system.stateVersion = "25.11";
+      system.stateVersion = "25.11";
 
       # Create a pkgs-unstable module to easily access unstable nixpkgs
       _module.args.pkgs-unstable = import inputs.nixpkgs-unstable {
