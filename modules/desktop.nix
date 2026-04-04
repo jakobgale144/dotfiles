@@ -14,7 +14,7 @@
     };
   };
 
-  den.aspects.noctalia.hjem = { pkgs-unstable, ... }: {
+  den.aspects.noctalia.hjem = { pkgs-unstable, lib, ... }: {
     packages = [
       pkgs-unstable.noctalia-shell
     ];
@@ -25,7 +25,7 @@
       partOf = [ "graphical-session.target" ];
       script = "${pkgs-unstable.noctalia-shell}/bin/noctalia-shell";
       wantedBy = [ "graphical-session.target" ];
-      environment.PATH = "/run/current-system/sw/bin";
+      environment.PATH = lib.mkForce "/run/current-system/sw/bin";
     };
   };
 
