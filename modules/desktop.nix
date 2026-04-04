@@ -29,7 +29,7 @@
     };
 
     files = {
-      ".config/noctalia/".source = ./config/noctalia;
+      ".config/noctalia".source = ./config/noctalia;
     };
   };
 
