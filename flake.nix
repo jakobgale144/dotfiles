@@ -24,10 +24,6 @@
     # Preservation
     preservation.url = "github:nix-community/preservation";
 
-    # Noctalia
-    # noctalia.url = "github:noctalia-dev/noctalia-shell";
-    # noctalia.inputs.nixpkgs.follows = "nixpkgs";
-
     # Yazelix
     # yazelix.url = "github:luccahuguet/yazelix";
     # yazelix.inputs.nixpkgs.follows = "nixpkgs-unstable";
