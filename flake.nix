@@ -29,7 +29,7 @@
     noctalia.inputs.nixpkgs.follows = "nixpkgs";
 
     # Yazelix
-    yazelix.url = "github:luccahuguet/yazelix";
-    yazelix.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # yazelix.url = "github:luccahuguet/yazelix";
+    # yazelix.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 }
