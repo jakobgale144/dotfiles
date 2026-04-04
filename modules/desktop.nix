@@ -7,15 +7,24 @@
   ];
 
   den.aspects.niri = {
-    nixos = { ... }: { programs.niri.enable = true; };
-    hjem.files = { # todo: not sure if this is necessary...
+    nixos = { ... }: { programs.niri.enable = true; }; # todo: need to be a function?
+    hjem.files = {
       ".config/niri/config.kdl".source = ./config/niri-config.kdl;
       ".config/niri/keybindings.kdl".source = ./config/niri-keybindings.kdl;
     };
   };
 
-  den.aspects.noctalia.hjem = {
-    systemd.services."noctalia-shell" = {
+  den.aspects.noctalia = { host, ... }: {
+    hjem.packages = [
+      inputs.noctalia.packages.${host.system}.default
+    ];
+
+    nixos.nix.settings = {
+      extra-substituters = [ "https://noctalia.cachix.org" ];
+      extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzWPp3dkU4=" ];
+    };
+
+    hjem.systemd.services."noctalia-shell" = {
       description = "Start Noctalia after Niri";
       after = [ "niri.service" ];
       partOf = [ "graphical-session.target" ];
