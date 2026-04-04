@@ -12,9 +12,11 @@
       system.stateVersion = "25.11";
 
       # Create a pkgs-unstable module to easily access unstable nixpkgs
-      hjem._module.args.pkgs-unstable = import inputs.nixpkgs-unstable {
-        system = pkgs.system;
-        config.allowUnfree = true;
+      hjem.specialArgs = {
+        pkgs-unstable = import inputs.nixpkgs-unstable {
+          system = pkgs.system;
+          config.allowUnfree = true;
+        };
       };
     };
   };
