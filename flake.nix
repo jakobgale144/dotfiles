@@ -25,7 +25,7 @@
     preservation.url = "github:nix-community/preservation";
 
     # Yazelix
-    # yazelix.url = "github:luccahuguet/yazelix";
-    # yazelix.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    yazelix.url = "github:luccahuguet/yazelix";
+    yazelix.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 }

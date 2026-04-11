@@ -1,0 +1,3 @@
+[submodule "content/catppuccin-wallpapers"]
+	path = content/catppuccin-wallpapers
+	url = https://github.com/zhichaoh/catppuccin-wallpapers

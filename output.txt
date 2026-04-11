@@ -1,0 +1,21 @@
+Script started on 2026-04-11 14:12:14-04:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="156" LINES="34"]
+]2;~/NixOS]7;file://test-laptop/home/test/NixOS\[32m     __  ,[0m
+[32m .--()°'.' [0m[0mWelcome to [32mNushell[0m[0m,[0m
+[32m'|, . ,'   [0m[0mbased on the [32mnu[0m[0m language,[0m
+[32m !_-(_\    [0m[0mwhere all data is structured!
+
+[0mVersion: [32m0.108.0 (x86_64-unknown-linux-gnu)[0m
+[0mPlease join our [35mDiscord[0m[0m community at [35mhttps://discord.gg/NtAbbGn[0m
+[0mOur [32m[1mGitHub[0m[0m repository is at [32m[1mhttps://github.com/nushell/nushell[0m
+[0mOur [35mDocumentation[0m[0m is located at [35mhttps://nushell.sh[0m
+[0mAnd the [32mLatest Nushell News[0m[0m at [32mhttps://nushell.sh/blog/[0m
+[0mLearn how to remove this at: [35mhttps://nushell.sh/book/configuration.html#remove-welcome-message[0m
+
+[0mIt's been this long since [32mNushell[0m[0m's first commit:[0m
+[0m6yrs 11months 1day 1hr 13mins 2secs 351ms 507µs 833ns 
+
+[32m[1mStartup Time: [0m[0m15ms 98µs 668ns[0m[0m
+
+[?2004h[6n[6n[?25l[34;1H[34;1H[J[38;5;10m]133;A\[1;32m~[1;92m/[1;32mNixOS[0m]133;B\[38;5;14m> [38;5;5m7[34;134H [0m[35m04[32m/[35m11[32m/[35m2026 02[32m:[35m12[32m:[35m14 [4;35mPM8[0m[0m78[?25h[6n[?25l[34;1H[34;1H[J[38;5;10m]133;A\[1;32m~[1;92m/[1;32mNixOS[0m]133;B\[38;5;14m> [38;5;5m7[34;134H [0m[35m04[32m/[35m11[32m/[35m2026 02[32m:[35m12[32m:[35m14 [4;35mPM8[0m[0m[36me[0m78[?25h[6n[?25l[34;1H[34;1H[J[38;5;10m]133;A\[1;32m~[1;92m/[1;32mNixOS[0m]133;B\[38;5;14m> [38;5;5m7[34;134H [0m[35m04[32m/[35m11[32m/[35m2026 02[32m:[35m12[32m:[35m14 [4;35mPM8[0m[0m[36mex[0m78[?25h[6n[?25l[34;1H[34;1H[J[38;5;10m]133;A\[1;32m~[1;92m/[1;32mNixOS[0m]133;B\[38;5;14m> [38;5;5m7[34;134H [0m[35m04[32m/[35m11[32m/[35m2026 02[32m:[35m12[32m:[35m14 [4;35mPM8[0m[0m[36mexi[0m78[?25h[6n[?25l[34;1H[34;1H[J[38;5;10m]133;A\[1;32m~[1;92m/[1;32mNixOS[0m]133;B\[38;5;14m> [38;5;5m7[34;134H [0m[35m04[32m/[35m11[32m/[35m2026 02[32m:[35m12[32m:[35m14 [4;35mPM8[0m[0m[1;36mexit[0m78[?25h[6n[?25l[34;1H[34;1H[J[38;5;10m]133;A\[1;32m~[1;92m/[1;32mNixOS[0m]133;B\[38;5;14m> [38;5;5m7[34;157H8[0m[0m[1;36mexit[0m78[?25h
+[?2004l]133;C\[0 q[?25h
+Script done on 2026-04-11 14:12:17-04:00 [COMMAND_EXIT_CODE="0"]

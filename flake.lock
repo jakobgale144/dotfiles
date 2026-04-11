@@ -138,7 +138,8 @@
         "import-tree": "import-tree",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "preservation": "preservation"
+        "preservation": "preservation",
+        "yazelix": "yazelix"
       }
     },
     "rust-overlay": {
@@ -198,6 +199,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "yazelix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775675692,
+        "narHash": "sha256-9VSmD1yxkJMGOH2cH29A8fZlQqzfa/9B+499cLCHW5w=",
+        "owner": "luccahuguet",
+        "repo": "yazelix",
+        "rev": "b1fcd7a85cda01b3e1ff0a73e88befeedc9dde7b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "luccahuguet",
+        "repo": "yazelix",
         "type": "github"
       }
     }
